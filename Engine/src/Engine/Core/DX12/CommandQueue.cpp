@@ -1,6 +1,8 @@
 #include <Include/Engine/Core/DX12/CommandQueue.h>
 
-CommandQueue::CommandQueue(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type) : m_fenceValue(0), BaseUnknown("CommandQueue", g_commandQueueID) {
+std::atomic<uint32_t> CommandQueue::g_commandQueueID = 0;
+
+bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type) {
   D3D12_COMMAND_QUEUE_DESC cqd;
   cqd.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
   cqd.NodeMask = 0;
@@ -10,26 +12,31 @@ CommandQueue::CommandQueue(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type) :
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command queue");
+    return false;
   }
   hr = device->CreateCommandAllocator(type, IID_PPV_ARGS(m_allocator.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command allocator");
+    return false;
   }
   hr = device->CreateCommandList(0, type, m_allocator.Get(), nullptr, IID_PPV_ARGS(m_commandList.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command list");
+    return false;
   }
   hr = device->CreateFence(m_fenceValue, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(m_fence.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command list");
+    return false;
   }
   m_fenceEvent = CreateEventW(nullptr, FALSE, FALSE, nullptr);
+  return true;
 }
 
-CommandQueue::CommandQueue(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState) : m_fenceValue(0), BaseUnknown("CommandQueue", g_commandQueueID) {
+bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState) {
   D3D12_COMMAND_QUEUE_DESC cqd;
   cqd.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
   cqd.NodeMask = 0;
@@ -39,24 +46,29 @@ CommandQueue::CommandQueue(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type, I
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command queue");
+    return false;
   }
   hr = device->CreateCommandAllocator(type, IID_PPV_ARGS(m_allocator.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command allocator");
+    return false;
   }
   hr = device->CreateCommandList(0, type, m_allocator.Get(), pipelineState, IID_PPV_ARGS(m_commandList.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command list");
+    return false;
   }
   hr = device->CreateFence(m_fenceValue, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(m_fence.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command list");
+    return false;
   }
   m_fenceEvent = CreateEventW(nullptr, FALSE, FALSE, nullptr);
 }
+CommandQueue::CommandQueue() : m_fenceValue(0), BaseUnknown("CommandQueue", g_commandQueueID), m_fenceEvent(nullptr) {}
 
 CommandQueue::~CommandQueue(){
   shutdown();

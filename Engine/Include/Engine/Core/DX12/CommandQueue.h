@@ -5,13 +5,14 @@ class CommandQueue : public BaseUnknown {
 protected:
   static std::atomic<uint32_t> g_commandQueueID;
 public:
-  CommandQueue(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type);
-  CommandQueue(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState);
+  bool initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type);
+  bool initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState);
+  CommandQueue();
   ~CommandQueue();
 
   void execute();
   void waitForGPU();
-  void shutdown();
+  void shutdown() override;
 
   ID3D12CommandQueue* getQueue() const { return m_queue.Get(); }
   ID3D12CommandAllocator* getAllocator() const { return m_allocator.Get(); }

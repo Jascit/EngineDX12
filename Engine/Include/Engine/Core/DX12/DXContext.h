@@ -3,23 +3,25 @@
 
 class DXContext {
 public:
-  DXContext(HWND hwnd);
   ~DXContext();
 
-  CommandQueue* getGraphicsQueue() { return &graphicsQueue; }
-  CommandQueue* getComputeQueue() { return &computeQueue; }
-  CommandQueue* getCopyQueue() { return &copyQueue; }
+  CommandQueue* getGraphicsQueue() { return &m_graphicsQueue; }
+  CommandQueue* getComputeQueue() { return &m_computeQueue; }
+  CommandQueue* getCopyQueue() { return &m_copyQueue; }
+  ID3D12Device* GetDevice() { return m_device.Get(); }
+  IDXGIFactory7* GetFactory() { return m_factory.Get(); }
+
+  bool initialize();
+  void shutdown();
 
 private:
-  void initDevice();
-  void createSwapChain();
 
-  ComPtr<ID3D12Device> device;
-  ComPtr<IDXGISwapChain3> swapChain;
+  ComPtr<IDXGIFactory7> m_factory;
+  ComPtr<ID3D12Device10> m_device;
 
-  CommandQueue graphicsQueue;
-  CommandQueue computeQueue;
-  CommandQueue copyQueue;
+  CommandQueue m_graphicsQueue;
+  CommandQueue m_computeQueue;
+  CommandQueue m_copyQueue;
 public:
   DXContext(const DXContext&) = delete;
   DXContext& operator=(const DXContext&) = delete;

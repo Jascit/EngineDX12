@@ -42,6 +42,7 @@ void ErrorHandler::CatchHRESULT(HRESULT hr, const std::string& context) {
     }
     else {
       std::string msg = errorMsg;
+      msg.erase(msg.begin() + msg.size() - 2, msg.end());
       ReportError("[" + timestamp + "] - HRESULT Error Message: " + msg + " - Context: " + context);
     }
   }
