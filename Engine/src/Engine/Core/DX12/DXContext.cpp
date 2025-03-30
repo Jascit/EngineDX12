@@ -2,6 +2,11 @@
 DXContext::~DXContext(){
   shutdown();
 }
+void DXContext::flush(size_t count)
+{
+  for (size_t i = 0; i < count; i++)
+    m_graphicsQueue.waitForGPU();
+}
 
 bool DXContext::initialize() {
   HRESULT hr = CreateDXGIFactory2(0, IID_PPV_ARGS(m_factory.GetAddressOf()));

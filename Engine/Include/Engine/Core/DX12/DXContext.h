@@ -5,14 +5,16 @@ class DXContext {
 public:
   ~DXContext();
 
-  CommandQueue* getGraphicsQueue() { return &m_graphicsQueue; }
-  CommandQueue* getComputeQueue() { return &m_computeQueue; }
-  CommandQueue* getCopyQueue() { return &m_copyQueue; }
+  CommandQueue* GetGraphicsQueue() { return &m_graphicsQueue; }
+  CommandQueue* GetComputeQueue() { return &m_computeQueue; }
+  CommandQueue* GetCopyQueue() { return &m_copyQueue; }
   ID3D12Device* GetDevice() { return m_device.Get(); }
   IDXGIFactory7* GetFactory() { return m_factory.Get(); }
 
   bool initialize();
   void shutdown();
+
+  void flush(size_t count);
 
 private:
 

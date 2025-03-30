@@ -2,7 +2,7 @@
 
 std::atomic<uint32_t> CommandQueue::g_commandQueueID = 0;
 
-bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type) {
+bool CommandQueue::initialize(ID3D12Device10* device, D3D12_COMMAND_LIST_TYPE type) {
   D3D12_COMMAND_QUEUE_DESC cqd;
   cqd.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
   cqd.NodeMask = 0;
@@ -20,7 +20,7 @@ bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command allocator");
     return false;
   }
-  hr = device->CreateCommandList(0, type, m_allocator.Get(), nullptr, IID_PPV_ARGS(m_commandList.GetAddressOf()));
+  hr = device->CreateCommandList1(0, type, D3D12_COMMAND_LIST_FLAG_NONE, IID_PPV_ARGS(m_commandList.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command list");
@@ -36,7 +36,7 @@ bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type
   return true;
 }
 
-bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState) {
+bool CommandQueue::initialize(ID3D12Device10* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState) {
   D3D12_COMMAND_QUEUE_DESC cqd;
   cqd.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
   cqd.NodeMask = 0;
@@ -54,7 +54,7 @@ bool CommandQueue::initialize(ID3D12Device* device, D3D12_COMMAND_LIST_TYPE type
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command allocator");
     return false;
   }
-  hr = device->CreateCommandList(0, type, m_allocator.Get(), pipelineState, IID_PPV_ARGS(m_commandList.GetAddressOf()));
+  hr = device->CreateCommandList1(0, type, D3D12_COMMAND_LIST_FLAG_NONE, IID_PPV_ARGS(m_commandList.GetAddressOf()));
   if (FAILED(hr))
   {
     ErrorHandler::Get().CatchHRESULT(hr, "failed to create command list");
@@ -97,12 +97,17 @@ void CommandQueue::shutdown(){
   }
 }
 
-void CommandQueue::execute(){
-  if (SUCCEEDED(m_commandList->Close()))
-  {
+void CommandQueue::excecuteCommandList(){
+  if (SUCCEEDED(m_commandList->Close())) {
     ID3D12CommandList* lists[] = { m_commandList.Get() };
     m_queue->ExecuteCommandLists(1, lists);
+    waitForGPU();
   }
+}
+ID3D12GraphicsCommandList7* CommandQueue::initCommandList() {
+  m_allocator->Reset();
+  m_commandList->Reset(m_allocator.Get(), nullptr);
+  return m_commandList.Get();
 }
 
 void CommandQueue::waitForGPU(){
