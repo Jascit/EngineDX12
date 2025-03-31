@@ -10,5 +10,6 @@ public:
   BaseUnknown() : m_name("Unknown") {}
   BaseUnknown(const std::string& name) : m_name(name) {}
   BaseUnknown(const std::string& name, std::atomic<uint32_t>& ID) : m_name(name + "_" + std::to_string(ID.fetch_add(1, std::memory_order_relaxed))) {}
+  virtual ~BaseUnknown() = default;
   virtual void shutdown() = 0;
 };
