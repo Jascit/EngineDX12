@@ -163,6 +163,9 @@
     <ClInclude Include="Include\Engine\Core\DX12\CommandQueue.h" />
     <ClInclude Include="Include\Engine\Core\DX12\DXContext.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\Mutex\BaseMutex.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\buffers\StaticGPUBuffer.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\Components.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableCS.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableMTX.h" />
     <ClInclude Include="Include\Engine\Core\Threading\CriticalSections\CriticalSection.h" />
@@ -174,9 +177,17 @@
     <ClInclude Include="Include\Engine\Graphics\DebugLayer\DXDebugLayer.h" />
     <ClInclude Include="Include\Engine\Core\Window\Window.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\BaseUnknown.h" />
-    <ClInclude Include="Include\Engine\Utils\Container.h" />
+    <ClInclude Include="Include\Engine\Utils\RawContainer.h" />
     <ClInclude Include="Include\Engine\Utils\WinInclude.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\BaseGPUBuffer.h" />
+    <ClInclude Include="Include\Engine\Core\Renderer\Renderer.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\ComponentManager.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\EntityManager.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\MeshManager.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\ShaderManager.h" />
+    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\TextureManager.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\SystemManager.h" />
+    <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
