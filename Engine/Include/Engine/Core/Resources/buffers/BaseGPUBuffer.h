@@ -1,7 +1,7 @@
 #pragma once
 #include <Include/Engine/Core/Interfaces/BaseUnknown.h>
 #include <Include/Engine/Utils/WinInclude.h>
-#include <Include/Engine/Utils/RawContainer.h>
+#include <Include/Engine/Core/Resources/Container.h>
 
 class BaseGPUBuffer : public BaseUnknown {
 protected:

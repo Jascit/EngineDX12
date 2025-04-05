@@ -1,44 +1,41 @@
 #include <Include/Engine/Utils/WinInclude.h>
-
-class RawContainer {
+template<typename T>
+class Container {
 public:
-  RawContainer() : _size(0), _data(nullptr) {}
+  Container() : _size(0), _data(nullptr) {}
 
-  explicit RawContainer(size_t size) : _size(size), _data(nullptr) {
+  explicit Container(size_t size) : _size(size), _data(nullptr) {
     initialize(_size);
   }
 
-  RawContainer(const void* data, size_t size) : _size(size), _data(nullptr) {
+  Container(const void* data, size_t size) : _size(size), _data(nullptr) {
     initialize(_size);
     if (_data) {
       memcpy(_data, data, _size);
     }
   }
 
-  // Забороняємо копіювання
-  RawContainer(const RawContainer&) = delete;
-  RawContainer& operator=(const RawContainer&) = delete;
+  Container(const Container&) = delete;
+  Container& operator=(const Container&) = delete;
 
-  // Дозволяємо лише переміщення
-  RawContainer(RawContainer&& other) noexcept
+  Container(Container&& other) noexcept
     : _size(other._size), _data(other._data) {
     other._size = 0;
     other._data = nullptr;
   }
 
-  RawContainer& operator=(RawContainer&& other) noexcept {
+  Container& operator=(Container&& other) noexcept {
     if (this == &other) return *this;
 
     reset();
     _size = other._size;
     _data = other._data;
-
     other._size = 0;
     other._data = nullptr;
     return *this;
   }
 
-  ~RawContainer() {
+  ~Container() {
     reset();
   }
 
