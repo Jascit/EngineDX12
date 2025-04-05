@@ -82,6 +82,42 @@ public:
     memcpy(_data, data, _size);
   }
 
+
+
+
+  void pushBack(T&& value) {
+    void* dest = (T*)(*pool) + _size;
+    new (dest) T(std::forward<T>(value));
+    ++_size;
+  }
+
+  T& operator[](size_t index) {
+    if (index > size)
+    {
+
+    }
+    return;
+  }
+  class Iterator : BaseIterator<T, Iterator> {
+    using BaseIterator = BaseIterator<T, Iterator>;
+  public:
+    Iterator(T* ptr) : BaseIterator(ptr) {};
+    void operator++() override {
+      ++m_ptr;
+    }
+    void operator--() override {
+      --m_ptr;
+    }
+  };
+  Iterator& end() {
+    Iterator temp(*_pool + _currentBlockOffset);
+    return temp;
+  }
+  Iterator& begin() {
+    Iterator temp(*_pool);
+    return temp;
+  }
+
 private:
   size_t _size;
   void* _data;
