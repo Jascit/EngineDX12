@@ -61,6 +61,7 @@
   <ItemGroup>
     <None Include="Assets\Shaders\Pipeline.hlsli" />
     <None Include=".gitignore" />
+    <None Include="Docs\Plans\Plan to create GCS.md" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shaders\PixelShader.hlsl" />
