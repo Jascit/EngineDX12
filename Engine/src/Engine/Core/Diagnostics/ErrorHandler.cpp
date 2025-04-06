@@ -1,7 +1,9 @@
 #include <Include/Engine/Core/Diagnostics/ErrorHandler.h>
 
-void ErrorHandler::CatchException(const std::exception& e) {
-  Logger::Get().logError("Exception caught: " + std::string(e.what()));
+void ErrorHandler::CatchException(const std::exception& e, const std::string& errorMsg) {
+  std::string msg = errorMsg;
+  msg.erase(msg.begin() + msg.size() - 2, msg.end());
+  Logger::Get().logError("Exception caught: " + std::string(e.what()) + " - Context: " + msg);
 
   std::time_t now = std::time(nullptr);
   ReportError("Exception occurred at: " + std::to_string(now) + " - " + e.what());

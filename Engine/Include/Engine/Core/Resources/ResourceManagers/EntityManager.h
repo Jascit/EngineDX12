@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <Include/Engine/Utils/WinInclude.h>
-//TODO:
+//TODO: 1 refactor
 using Entity = size_t;
 const Entity INVALID_ENTITY = std::numeric_limits<Entity>::max();
 class EntityManager {

@@ -2,7 +2,7 @@
 #include <Include/Engine/Core/Interfaces/BaseIterator.h>
 #include <Include/Engine/Core/Memory/GMalloc.h>
 #include <set>
-//TODO:
+//TODO: 2 refactor
 template<typename T>
 class ObjectMemoryPool {
 private:
@@ -15,7 +15,6 @@ public:
     T* ptr = reinterpret_cast<T*>(GMalloc::malloc(_blockCount * _blockSize));
     _FreeBlock _freeBlock = { 0, blockCount - 1 };
     _pool = ptr;
-    _freeBlocks.emplace(_freeBlock);
   }
   ~ObjectMemoryPool() {
     shutdown();

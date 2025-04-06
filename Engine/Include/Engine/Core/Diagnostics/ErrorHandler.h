@@ -8,7 +8,7 @@ class ErrorHandler
 public:
 
   // Handle standard exceptions.
-  void CatchException(const std::exception& e);
+  void CatchException(const std::exception& e, const std::string& errorMsg);
 
   // Handle DirectX errors.
   void CatchHRESULT(HRESULT hr, const std::string& context);

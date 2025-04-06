@@ -1,6 +1,6 @@
 #pragma once
 #include <Include/Engine/Core/Memory/GMalloc.h>
-//TODO:
+//TODO: 2 refactor
 template<typename T>
 class Allocator {
 //not magnifying data

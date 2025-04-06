@@ -142,6 +142,7 @@
     <ClCompile Include="src\Engine\Core\Resources\buffers\BaseGPUBuffer.cpp" />
     <ClCompile Include="src\Engine\Core\Memory\GMalloc.cpp" />
     <ClCompile Include="src\Engine\Core\Resources\ResourceManagers\EntityManager.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\GCSystem.cpp" />
     <ClCompile Include="src\Engine\Graphics\DebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Engine\Core\Window\Window.cpp" />
@@ -168,11 +169,16 @@
     <ClInclude Include="Include\Engine\Core\DX12\CommandQueue.h" />
     <ClInclude Include="Include\Engine\Core\DX12\DXContext.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\BaseIterator.h" />
-    <ClInclude Include="Include\Engine\Core\Interfaces\BaseObject.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\CoreObject.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\BaseGarbageObject.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\IGameObject.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\IGC.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\ISystem.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\Mutex\BaseMutex.h" />
     <ClInclude Include="Include\Engine\Core\Memory\Allocator.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ECSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\GCSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\StaticGPUBuffer.h" />
     <ClInclude Include="Include\Engine\Core\Resources\Components\IComponents.h" />
@@ -182,6 +188,8 @@
     <ClInclude Include="Include\Engine\Core\Memory\MemoryManager.h" />
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\UploadManager.h" />
     <ClInclude Include="Include\Engine\Core\Systems\Game\GameEngine.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ResourceManagmentSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\UploadSystem.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableCS.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableMTX.h" />
