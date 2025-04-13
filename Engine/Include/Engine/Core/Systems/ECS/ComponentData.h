@@ -25,8 +25,8 @@ public:
     auto it = m_indices.find(ID);
     if (it == m_indices.end()) return false;
 
-    size_t indexToRemove = it->second;
-    size_t lastIndex = m_data.size() - 1;
+    UINT indexToRemove = it->second;
+    UINT lastIndex = m_data.size() - 1;
 
     if (indexToRemove != lastIndex)
     {
@@ -53,12 +53,12 @@ public:
   }
 
   std::vector<std::pair<Entity, T>>& getAllComponents() { return m_data; }
-  std::unordered_map<Entity, size_t>& getAllIndices() { return m_indices; }
+  std::unordered_map<Entity, UINT>& getAllIndices() { return m_indices; }
   std::vector<Entity>& getEntityLookupTable() { return m_entityLookup; }
 
 private:
-  std::unordered_map<Entity, size_t> m_indices;
+  std::unordered_map<Entity, UINT> m_indices;
   std::vector<T> m_data;
   std::vector<Entity> m_entityLookup;
-  size_t _size;
+  UINT _size;
 };

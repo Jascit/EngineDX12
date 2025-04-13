@@ -2,8 +2,8 @@
 #include <vector>
 #include <Include/Engine/Utils/WinInclude.h>
 //TODO: 0 refactor
-using Entity = size_t;
-const Entity INVALID_ENTITY = std::numeric_limits<Entity>::max();
+using Entity = UINT;
+const Entity INVALID_ENTITY = std::numeric_limits<UINT>::max();
 class EntityManager {
 public:   
   EntityManager();
@@ -15,3 +15,4 @@ private:
   std::vector<Entity> m_freeEntities;
   Entity m_nextEntity;
 };
+

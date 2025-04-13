@@ -144,6 +144,7 @@
     <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\TimeSystem\TimeSystem.cpp" />
     <ClCompile Include="src\Engine\Graphics\DebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Engine\Core\Window\Window.cpp" />
@@ -193,6 +194,8 @@
     <ClInclude Include="Include\Engine\Core\Systems\Game\GameEngine.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ResourceManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\ScheduleManager.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\TimeSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\UploadSystem.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableCS.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableMTX.h" />

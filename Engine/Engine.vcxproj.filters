@@ -60,6 +60,9 @@
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\TimeSystem\TimeSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Pipeline.hlsli" />
@@ -231,6 +234,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\TimeSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\ScheduleManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
