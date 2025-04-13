@@ -143,7 +143,7 @@
     <ClCompile Include="src\Engine\Core\Memory\GMalloc.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp" />
-    <ClCompile Include="src\Engine\Core\Systems\GCSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp" />
     <ClCompile Include="src\Engine\Graphics\DebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Engine\Core\Window\Window.cpp" />
@@ -184,7 +184,7 @@
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\StaticGPUBuffer.h" />
-    <ClInclude Include="Include\Engine\Core\Resources\Components\IComponents.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\IComponent.h" />
     <ClInclude Include="Include\Engine\Core\Resources\Components\MeshComponent.h" />
     <ClInclude Include="Include\Engine\Core\Memory\GMalloc.h" />
     <ClInclude Include="Include\Engine\Core\Memory\MemoryPool.h" />
@@ -218,6 +218,8 @@
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\TextureManager.h" />
     <ClInclude Include="Include\Engine\Core\Systems\SystemManager.h" />
     <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h" />
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\ECSStressTest.h" />
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,14 +4,14 @@ BaseGPUBuffer::~BaseGPUBuffer(){
   shutdown();
 }
 
-BaseGPUBuffer::BaseGPUBuffer() : m_CPUBuffer(), m_GPUbuffer(nullptr), BaseUnknown("GPUBuffer") {}
+BaseGPUBuffer::BaseGPUBuffer() : /*m_CPUBuffer()*/ m_GPUbuffer(nullptr), BaseUnknown("GPUBuffer") {}
 
 void BaseGPUBuffer::shutdown(){
   if (m_GPUbuffer)
   {
     m_GPUbuffer.Reset();
   }
-  m_CPUBuffer.reset();
+  //m_CPUBuffer.reset();
 }
 
 bool BaseGPUBuffer::initialize(size_t size, ID3D12Device10* device){
@@ -40,7 +40,7 @@ bool BaseGPUBuffer::initialize(size_t size, ID3D12Device10* device){
       ErrorHandler::Get().CatchHRESULT(hr, "failed to create buffer in " + GetName());
       return false;
     }
-    m_CPUBuffer.initialize(m_size);
+    //m_CPUBuffer.initialize(m_size);
   }
   else
   {

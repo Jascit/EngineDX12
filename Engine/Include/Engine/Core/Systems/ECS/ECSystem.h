@@ -28,7 +28,7 @@ public:
   // TODO: 2 Communication with GCS to delete unneeded components and entities
   template<typename T>
   void removeComponent(Entity entity);
-  
+
   template<typename T>
   ComponentData<T>& getComponentData();
 

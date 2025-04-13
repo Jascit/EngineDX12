@@ -5,18 +5,7 @@ void ECSystem::initialize() {
 }
 
 void ECSystem::update() {
-  // Beispiel: Iteration ?ber Entit?ten mit bestimmten Komponenten
-  for (Entity entity : m_entityManager.getActiveEntities()) {
-    if (hasComponent<TransformComponent>(entity) &&
-      hasComponent<PhysicsComponent>(entity)) {
-
-      auto* transform = getComponent<TransformComponent>(entity);
-      auto* physics = getComponent<PhysicsComponent>(entity);
-
-      // Beispiel-Logik: Position aktualisieren
-      transform->position += physics->velocity;
-    }
-  }
+ 
 }
 
 void ECSystem::shutdown() {

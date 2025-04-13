@@ -1,5 +1,5 @@
 #pragma once
-#include <Include/Engine/Core/Resources/Components/IComponents.h>
+#include <Include/Engine/Core/Interfaces/IComponent.h>
 #include "ComponentData.h"
 #include <unordered_map>
 #include <memory>
@@ -11,7 +11,7 @@ public:
   void addComponent(Entity entity, const T& component) {
     static_assert(std::is_base_of<IComponent, T>::value, "Component must be derived from IComponent");
 
-    getComponentData<T>().addComponent(entity, component);
+    getComponentData<T>().addComponent(entity, std::decay_t<T>(component));
   }
 
   template<typename T>
@@ -39,7 +39,7 @@ public:
 
   template<typename T>
   void clearComponents() {
-    getComponentMap<T>().clear();
+    getComponentData<T>().clear();
   }
 
   template<typename T>

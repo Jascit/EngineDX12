@@ -16,9 +16,9 @@ public:
       throw std::runtime_error("Component already exists for this Entity");
     }
 
-    m_indices[ID] = m_data.size();
-    m_entityLookup.push_back(ID);
     m_data.emplace_back(std::forward<T>(data));
+    m_indices[ID] = _size++;
+    m_entityLookup.push_back(ID);
   }
 
   bool removeComponent(Entity ID) {
@@ -32,12 +32,13 @@ public:
     {
       m_data[indexToRemove] = std::move(m_data[lastIndex]);
       m_entityLookup[indexToRemove] = m_entityLookup[lastIndex];
+      m_indices[m_entityLookup[lastIndex]] = indexToRemove;
     }
-    
+
     m_data.pop_back();
     m_entityLookup.pop_back();
     m_indices.erase(it);
-
+    _size--;
     return true;
   }
 
@@ -59,4 +60,5 @@ private:
   std::unordered_map<Entity, size_t> m_indices;
   std::vector<T> m_data;
   std::vector<Entity> m_entityLookup;
+  size_t _size;
 };

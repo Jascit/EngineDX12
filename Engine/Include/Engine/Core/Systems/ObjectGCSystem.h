@@ -39,10 +39,17 @@ public:
   void collectGarbageDuringIdleTime();
 
   // Registers an object for tracking
-  void RegisterObject(IObjContext* object);
+  void RegisterObject();
 
   // Unregisters an object from GC tracking
-  void UnregisterObject(IObjContext* object);
+  void UnregisterObject();
+
+  //=== Virtuals ===
+  virtual size_t GetReclaimedMemory() const override;
+  virtual void Mark() override;
+  virtual void Sweep() override;
+  virtual void CollectGarbage() override;
+  virtual void runGC() override;
 
 private:
   size_t memoryThreshold = 1024 * 1024 * 50; // GC trigger threshold in bytes

@@ -1,11 +1,6 @@
 #include <Include/Engine/Core/Diagnostics/Logger.h>
 
 Logger::Logger() : m_shouldStop(false), m_buffer{ 0 }, m_currentSize(0), m_lastSize(0) {
-	m_file.open("out/logs/log.txt", std::ios::app);
-	if (!m_file.is_open()) {
-		OutputDebugStringA("Debug message: Can not create log file!\n");
-		return;
-	}
 	startWorker();
 }
 
@@ -48,7 +43,6 @@ Logger::~Logger() {
 	if (m_workerThread.joinable()) {
 		m_workerThread.join();
 	}
-	m_file.close();
 }
 
 void Logger::startWorker() {
@@ -60,6 +54,11 @@ void Logger::threadCycle() {
 	lock.unlock();
 	while (!m_shouldStop) {
 		m_condition.wait(lock, [this] { return !m_queue.empty() || m_shouldStop; });
+		m_file.open("out/logs/log.txt", std::ios::app);
+		if (!m_file.is_open()) {
+			OutputDebugStringA("Debug message: Can not create log file!\n");
+			return;
+		}
 		while (!m_queue.empty()) {
 			auto instance = m_queue.front();
 			m_queue.pop_front();
@@ -67,6 +66,7 @@ void Logger::threadCycle() {
 			writeInLogs(instance.second, instance.first);
 			lock.unlock();
 		}
+		m_file.close();
 	}
 }
 

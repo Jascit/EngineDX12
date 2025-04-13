@@ -2,6 +2,7 @@
 #include <Include/Engine/Utils/WinInclude.h>
 #include <Include/Engine/Core/DX12/DXContext.h>
 #include <Include/Engine/Core/Window/Window.h>
+#include <Tests/CoreTests/Systems/ECS/ECSStressTest.h>
 namespace fs = std::filesystem;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
@@ -13,6 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     if (DXContext::Get().initialize() && Window::Get().initialize())
     {
       Logger::Get().logInfo("DXContex and Window are initialized");
+      thread t(stressTestECSystem);
       while (!Window::Get().shouldClose())
       {
         Window::Get().update();
@@ -27,6 +29,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         DXContext::Get().GetGraphicsQueue()->excecuteCommandList();
         Window::Get().preset();
       }
+      t.join();
     }
     DXContext::Get().flush(Window::GetFrameCount());
     Window::Get().shutdown();

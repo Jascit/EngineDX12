@@ -54,7 +54,7 @@
     <ClCompile Include="src\Engine\Core\Memory\GMalloc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Core\Systems\GCSystem.cpp">
+    <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp">
@@ -158,7 +158,7 @@
     <ClInclude Include="Include\Engine\Core\Renderer\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Resources\Components\IComponents.h">
+    <ClInclude Include="Include\Engine\Core\Interfaces\IComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\UploadManager.h">
@@ -225,6 +225,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\ECSStressTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
