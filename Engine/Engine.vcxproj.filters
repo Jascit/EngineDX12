@@ -39,7 +39,7 @@
     <ClCompile Include="src\Engine\Core\Resources\buffers\BaseGPUBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Core\Resources\ResourceManagers\EntityManager.cpp">
+    <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Math\Matrix\Matrix.cpp">
@@ -55,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Core\Systems\GCSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,10 +134,10 @@
     <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\EntityManager.h">
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\EntityManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\ComponentManager.h">
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h">
@@ -200,7 +203,7 @@
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\GCSystem.h">
+    <ClInclude Include="Include\Engine\Core\Systems\ObjectGCSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\ResourceManagmentSystem.h">
@@ -209,7 +212,7 @@
     <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\ECSystem.h">
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\ECSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Interfaces\IGameObject.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Interfaces\IGC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

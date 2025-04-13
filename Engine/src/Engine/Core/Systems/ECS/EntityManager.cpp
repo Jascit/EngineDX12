@@ -1,4 +1,4 @@
-#include <Include/Engine/Core/Resources/ResourceManagers/EntityManager.h>
+#include <Include/Engine/Core/Systems/ECS/EntityManager.h>
 EntityManager::EntityManager() : m_nextEntity(0) {}
 
 Entity EntityManager::addEntity(){
@@ -22,4 +22,8 @@ void EntityManager::removeEntity(Entity entity){
 
 		Logger::Get().logError("Invalid Entity ID: " + std::to_string(entity));
 	}
+}
+
+const std::vector<Entity>& EntityManager::getActiveEntities() const{
+	return m_activeEntities;
 }

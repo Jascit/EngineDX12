@@ -16,7 +16,7 @@ public:
 
   void release() {
     if (m_ref.fetch_sub(1, std::memory_order_release) == 1) {
-      //GCManager::Get().killMemory(this);
+
     }
   }
 

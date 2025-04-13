@@ -1,4 +1,4 @@
-// TODO: GCSystem 0, related to Memory Management System
+// TODO: GCSystem 1, related to Memory Management System
 /**
  * @class GCSystem
  * @brief Abstract base class for implementing a custom garbage collection system.

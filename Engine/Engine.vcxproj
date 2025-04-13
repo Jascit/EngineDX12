@@ -141,7 +141,8 @@
     <ClCompile Include="src\Engine\Core\Memory\Allocator.cpp" />
     <ClCompile Include="src\Engine\Core\Resources\buffers\BaseGPUBuffer.cpp" />
     <ClCompile Include="src\Engine\Core\Memory\GMalloc.cpp" />
-    <ClCompile Include="src\Engine\Core\Resources\ResourceManagers\EntityManager.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\GCSystem.cpp" />
     <ClCompile Include="src\Engine\Graphics\DebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="src\Engine.cpp" />
@@ -177,8 +178,9 @@
     <ClInclude Include="Include\Engine\Core\Interfaces\ISystem.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\Mutex\BaseMutex.h" />
     <ClInclude Include="Include\Engine\Core\Memory\Allocator.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\ECSystem.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\GCSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentData.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\ECSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ObjectGCSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\StaticGPUBuffer.h" />
@@ -209,8 +211,8 @@
     <ClInclude Include="Include\Engine\Utils\WinInclude.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\BaseGPUBuffer.h" />
     <ClInclude Include="Include\Engine\Core\Renderer\Renderer.h" />
-    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\ComponentManager.h" />
-    <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\EntityManager.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentManager.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ECS\EntityManager.h" />
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\MeshManager.h" />
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\ShaderManager.h" />
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\TextureManager.h" />
