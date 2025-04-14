@@ -1,14 +1,5 @@
-#include <Include/Engine/Core/Systems/TimeSystem/TimeSystem.h>
-
-void TimeSystem::update(){
-  auto now = std::chrono::high_resolution_clock().now();
-  m_deltaTime = std::chrono::duration<float>(now - lastFrameTime).count();
-  lastFrameTime = now;
-
-  m_totalTime += m_deltaTime;
-}
-
-TimeSystem::CallbackID TimeSystem::registerCallback(UpdateCallback func) {
+#include <Include/Engine/Core/AbstractClasses/Systems/Time/BaseTickSystem.h>
+BaseTickSystem::CallbackID BaseTickSystem::registerCallback(UpdateCallback func){
   CallbackID id = 0;
   if (!_freeIDs.empty()) {
     id = _freeIDs.back();
@@ -17,14 +8,14 @@ TimeSystem::CallbackID TimeSystem::registerCallback(UpdateCallback func) {
   else {
     id = _nextID++;
   }
-  // Speichere den Index des neuen Callbacks.
+
   _callbacksIndices[id] = _callbacks.size();
   _lookupTable.push_back(id);
   _callbacks.push_back(std::move(func));
   return id;
 }
 
-void TimeSystem::unregisterCallback(CallbackID id) {
+void BaseTickSystem::unregisterCallback(CallbackID id){
   auto it = _callbacksIndices.find(id);
   if (it == _callbacksIndices.end()) {
     return;

@@ -144,7 +144,9 @@
     <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp" />
-    <ClCompile Include="src\Engine\Core\Systems\TimeSystem\TimeSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\Time\FixedTickSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\Time\FrameTickSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\Time\TimeSystem.cpp" />
     <ClCompile Include="src\Engine\Graphics\DebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Engine\Core\Window\Window.cpp" />
@@ -167,6 +169,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.h" />
     <ClInclude Include="Include\Engine\Core\Diagnostics\ErrorHandler.h" />
     <ClInclude Include="Include\Engine\Core\Diagnostics\Logger.h" />
     <ClInclude Include="Include\Engine\Core\DX12\CommandQueue.h" />
@@ -194,8 +197,10 @@
     <ClInclude Include="Include\Engine\Core\Systems\Game\GameEngine.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ResourceManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\ScheduleManager.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\TimeSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\Time\FixedTickSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\Time\FrameTickSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\Time\ScheduleManager.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\Time\TimeSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\UploadSystem.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableCS.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableMTX.h" />
@@ -221,6 +226,7 @@
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\TextureManager.h" />
     <ClInclude Include="Include\Engine\Core\Systems\SystemManager.h" />
     <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h" />
+    <ClInclude Include="src\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.cpp" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\ECSStressTest.h" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h" />
   </ItemGroup>

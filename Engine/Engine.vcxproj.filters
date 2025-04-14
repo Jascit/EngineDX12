@@ -60,7 +60,13 @@
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Core\Systems\TimeSystem\TimeSystem.cpp">
+    <ClCompile Include="src\Engine\Core\Systems\Time\TimeSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\Time\FrameTickSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\Time\FixedTickSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -236,10 +242,22 @@
     <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\TimeSystem.h">
+    <ClInclude Include="Include\Engine\Core\Systems\Time\TimeSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\TimeSystem\ScheduleManager.h">
+    <ClInclude Include="Include\Engine\Core\Systems\Time\ScheduleManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\Time\FixedTickSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\Time\FrameTickSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
