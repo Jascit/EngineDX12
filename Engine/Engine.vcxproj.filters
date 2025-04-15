@@ -51,9 +51,6 @@
     <ClCompile Include="src\Engine\Core\Memory\Allocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Core\Memory\GMalloc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,6 +64,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Core\Systems\Time\FixedTickSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\Memory\MemoryManagmentSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,10 +191,10 @@
     <ClInclude Include="Include\Engine\Core\Memory\MemoryPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Memory\MemoryManager.h">
+    <ClInclude Include="Include\Engine\Core\Systems\Memory\MemoryManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Memory\GMalloc.h">
+    <ClInclude Include="Include\Engine\Core\Memory\TrackingAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Interfaces\BaseIterator.h">
@@ -209,7 +209,7 @@
     <ClInclude Include="Include\Engine\Core\Systems\Game\GameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem.h">
+    <ClInclude Include="Include\Engine\Core\Systems\Memory\MemoryManagmentSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\ObjectGCSystem.h">

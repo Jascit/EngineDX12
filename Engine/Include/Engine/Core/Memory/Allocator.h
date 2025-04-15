@@ -1,5 +1,4 @@
 #pragma once
-#include <Include/Engine/Core/Memory/GMalloc.h>
 //TODO: 2 refactor
 template<typename T>
 class Allocator {

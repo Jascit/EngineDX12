@@ -18,7 +18,6 @@ public:
   float GetTimeScale() const { return m_timeScale; }
   void SetTimeScale(float scale) { m_timeScale = scale; }
 
-
 private:
   std::chrono::high_resolution_clock::time_point lastFrameTime;
   float m_deltaTime;

@@ -1,5 +1,5 @@
 #pragma once
-#include <Include/Engine/Core/Memory/GMalloc.h>
+#include <Include/Engine/Core/Memory/TrackingAllocator.h>
 
 class MemoryManager {
 public:
