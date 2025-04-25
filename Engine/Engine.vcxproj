@@ -180,6 +180,7 @@
     <ClInclude Include="Include\Engine\Core\Interfaces\IGameObject.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\IGC.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\ISystem.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\ITask.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\Mutex\BaseMutex.h" />
     <ClInclude Include="Include\Engine\Core\Memory\DefaultAllocator.h" />
     <ClInclude Include="Include\Engine\Core\Memory\Memory.h" />
@@ -200,7 +201,9 @@
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\UploadManager.h" />
     <ClInclude Include="Include\Engine\Core\Systems\Game\GameEngine.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ResourceManagmentSystem.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem\ThreadingSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem\ThreadPool\TaskQueue.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem\ThreadPool\ThreadPool.h" />
     <ClInclude Include="Include\Engine\Core\Systems\Time\FixedTickSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\Time\FrameTickSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\Time\ScheduleManager.h" />
