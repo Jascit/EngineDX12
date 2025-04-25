@@ -142,8 +142,13 @@
     <ClCompile Include="src\Engine\Core\Resources\buffers\BaseGPUBuffer.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp" />
-    <ClCompile Include="src\Engine\Core\Systems\Memory\MemoryManagmentSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTrackerScope.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LowLevelMemoryTracker.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\MemoryManagmentSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadPool\TaskQueue.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadingSystem.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadPool\ThreadPool.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\Time\FixedTickSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\Time\FrameTickSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\Time\TimeSystem.cpp" />
@@ -190,7 +195,7 @@
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ECSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTrackerScope.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LovLevelMemoryTracker.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LowLevelMemoryTracker.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ObjectGCSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\MemoryManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h" />
@@ -233,6 +238,7 @@
     <ClInclude Include="Include\Engine\Core\Systems\SystemManager.h" />
     <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h" />
     <ClInclude Include="src\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.cpp" />
+    <ClInclude Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.cpp" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\ECSStressTest.h" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h" />
   </ItemGroup>

@@ -1,20 +1,10 @@
 #pragma once
 #include <Include/Engine/Core/Systems/MemoryManagmentSystem/LLM/LLMStructs.h>
-
+//TODO: Allocators remake
 class LLMTrackerScope {
 public:
-  LLMTrackerScope(LLMTags tag, const char* file, size_t line, const char* func)
-    : _tag(tag), _file(file), _line(line), _func(func)
-  {
-    // Optional: z.?B. Logging oder Debug-Ausgabe
-    GCurrentLLMTag = static_cast<int>(tag);
-  }
-
-  ~LLMTrackerScope() {
-    // Scope endet – zur?cksetzen oder aufr?umen
-    GCurrentLLMTag = static_cast<int>(LLMTags::Unknown);
-  }
-
+  LLMTrackerScope(LLMTags tag, const char* file, size_t line, const char* func);
+  ~LLMTrackerScope();
 private:
   LLMTags _tag;
   const char* _file;
