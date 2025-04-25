@@ -6,7 +6,7 @@
 // It serves as a central interface for the Entity Component System.
 class ECSystem : public ISystem {
 public:
-  void initialize() override;
+  bool initialize() override;
   void update() override;
   void shutdown() override;
 

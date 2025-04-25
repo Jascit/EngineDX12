@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <type_traits>
 #include <minmax.h>
-
+//TODO: that's a fucking bullshit, just kill yourself
 constexpr size_t BigAllocationThreshold = 1024 * 64;
 constexpr size_t BigAllocationAlignment = 64;
 

@@ -7,7 +7,7 @@
 #include <type_traits>
 #include <cassert>
 #include <utility>
-
+//TODO: 1, GMalloc, remake for Memory
 constexpr size_t BigAllocationThreshold = 1024 * 64;
 constexpr size_t BigAllocationAlignment = 64;
 
@@ -21,7 +21,7 @@ public:
 #endif
 
 #if defined(_M_IX86) || defined(_M_X64)
-    size_t usedAlign = (bytes >= BigAllocationThreshold) ? std::max(alignment, BigAllocationAlignment) : alignment;
+    size_t usedAlign = (bytes >= BigAllocationThreshold) ? max(alignment, BigAllocationAlignment) : alignment;
     void* ptr = ::operator new(bytes, std::align_val_t{ usedAlign });
 #else
     void* ptr = ::operator new(bytes, std::align_val_t{ Align });
@@ -40,7 +40,7 @@ public:
 #endif
 
 #if defined(_M_IX86) || defined(_M_X64)
-    size_t usedAlign = (bytes >= BigAllocationThreshold) ? std::max(alignment, BigAllocationAlignment) : alignment;
+    size_t usedAlign = (bytes >= BigAllocationThreshold) ? max(alignment, BigAllocationAlignment) : alignment;
     ::operator delete(ptr, bytes, std::align_val_t{ usedAlign });
 #else
     ::operator delete(ptr, bytes, std::align_val_t{ Align });

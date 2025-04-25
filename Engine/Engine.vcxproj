@@ -190,7 +190,7 @@
     <ClInclude Include="Include\Engine\Core\Memory\DefaultAllocator.h" />
     <ClInclude Include="Include\Engine\Core\Memory\Memory.h" />
     <ClInclude Include="Include\Engine\Core\Memory\Ptr\GuardPtr.h" />
-    <ClInclude Include="Include\Engine\Core\Memory\SRLAllocator.h" />
+    <ClInclude Include="Include\Engine\Core\Memory\STLAllocator.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentData.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ECSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.h" />
