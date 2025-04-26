@@ -66,7 +66,34 @@
     <ClCompile Include="src\Engine\Core\Systems\Time\FixedTickSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Core\Systems\Memory\MemoryManagmentSystem.cpp">
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMScopeTracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\MemoryManagmentSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadPool\TaskQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadingSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadPool\ThreadPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Engine\Core\Memory\MemoryPool.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Memory\TrackingAllocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Interfaces\BaseObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,9 +111,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Graphics\DebugLayer\DXDebugLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Interfaces\BaseUnknown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Diagnostics\Logger.h">
@@ -185,40 +209,16 @@
     <ClInclude Include="Include\Engine\Math\Matrix\MatrixFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Memory\Allocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Memory\MemoryPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\Memory\MemoryManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Memory\TrackingAllocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Interfaces\BaseIterator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Interfaces\CoreObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Interfaces\BaseGarbageObject.h">
+    <ClInclude Include="Include\Engine\Core\Interfaces\BaseObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\Game\GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\Memory\MemoryManagmentSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\ObjectGCSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\ResourceManagmentSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ECSystem.h">
@@ -254,10 +254,61 @@
     <ClInclude Include="Include\Engine\Core\Systems\Time\FrameTickSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.h">
+    <ClInclude Include="Include\Engine\Core\Interfaces\Systems\Time\BaseTickSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.cpp">
+    <ClInclude Include="src\Engine\Core\Interfaces\Systems\Time\BaseTickSystem.cpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Interfaces\IEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\ITask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Memory\TrackingAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Interfaces\IMalloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Memory\Ptr\GuardPtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Memory\STLAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTrackerScope.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\MemoryManagmentSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\MemoryManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem\ThreadingSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem\ThreadPool\TaskQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\ThreadingSystem\ThreadPool\ThreadPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMScopeTracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Memory\MemoryArena.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\CoreTests\Memory\GMallocTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,7 +18,6 @@
  * or engine-specific garbage collection behavior.
  */
 #pragma once
-#include <Include/Engine/Core/Interfaces/BaseGarbageObject.h>
 #include <Include/Engine/Core/Interfaces/IGC.h>
 
 class ObjectGCSystem : IGC {

@@ -134,16 +134,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Include\Engine\Core\Memory\MemoryPool.h" />
     <ClCompile Include="src\Engine\Core\Diagnostics\ErrorHandler.cpp" />
     <ClCompile Include="src\Engine\Core\Diagnostics\Logger.cpp" />
     <ClCompile Include="src\Engine\Core\DX12\CommandQueue.cpp" />
     <ClCompile Include="src\Engine\Core\DX12\DXContext.cpp" />
+    <ClCompile Include="src\Engine\Core\Interfaces\BaseObject.cpp" />
     <ClCompile Include="src\Engine\Core\Memory\Allocator.cpp" />
+    <ClCompile Include="src\Engine\Core\Memory\TrackingAllocator.cpp" />
     <ClCompile Include="src\Engine\Core\Resources\buffers\BaseGPUBuffer.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ECS\ECSystem.cpp" />
-    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTrackerScope.cpp" />
-    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LowLevelMemoryTracker.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMScopeTracker.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.cpp" />
+    <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTracker.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\MemoryManagmentSystem\MemoryManagmentSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ObjectGCSystem.cpp" />
     <ClCompile Include="src\Engine\Core\Systems\ThreadingSystem\ThreadPool\TaskQueue.cpp" />
@@ -174,28 +178,29 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\Systems\Time\BaseTickSystem.h" />
     <ClInclude Include="Include\Engine\Core\Diagnostics\ErrorHandler.h" />
     <ClInclude Include="Include\Engine\Core\Diagnostics\Logger.h" />
     <ClInclude Include="Include\Engine\Core\DX12\CommandQueue.h" />
     <ClInclude Include="Include\Engine\Core\DX12\DXContext.h" />
-    <ClInclude Include="Include\Engine\Core\Interfaces\CoreObject.h" />
-    <ClInclude Include="Include\Engine\Core\Interfaces\IAllocator.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\BaseObject.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\IEntity.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\IGameObject.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\IGC.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\ISystem.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\ITask.h" />
     <ClInclude Include="Include\Engine\Core\Interfaces\Multithreading\Mutex\BaseMutex.h" />
-    <ClInclude Include="Include\Engine\Core\Memory\DefaultAllocator.h" />
-    <ClInclude Include="Include\Engine\Core\Memory\Memory.h" />
+    <ClInclude Include="Include\Engine\Core\Memory\TrackingAllocator.h" />
+    <ClInclude Include="Include\Engine\Core\Interfaces\IMalloc.h" />
+    <ClInclude Include="Include\Engine\Core\Memory\MemoryArena.h" />
     <ClInclude Include="Include\Engine\Core\Memory\Ptr\GuardPtr.h" />
     <ClInclude Include="Include\Engine\Core\Memory\STLAllocator.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ComponentData.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ECS\ECSystem.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMScopeTracker.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTrackerScope.h" />
-    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LowLevelMemoryTracker.h" />
+    <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMTracker.h" />
     <ClInclude Include="Include\Engine\Core\Systems\ObjectGCSystem.h" />
     <ClInclude Include="Include\Engine\Core\Systems\MemoryManagmentSystem\MemoryManagmentSystem.h" />
     <ClInclude Include="Include\Engine\Core\Resources\buffers\RingGPUBuffer.h" />
@@ -237,8 +242,8 @@
     <ClInclude Include="Include\Engine\Core\Resources\ResourceManagers\TextureManager.h" />
     <ClInclude Include="Include\Engine\Core\Systems\SystemManager.h" />
     <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h" />
-    <ClInclude Include="src\Engine\Core\AbstractClasses\Systems\Time\BaseTickSystem.cpp" />
-    <ClInclude Include="src\Engine\Core\Systems\MemoryManagmentSystem\LLM\LLMStructs.cpp" />
+    <ClInclude Include="src\Engine\Core\Interfaces\Systems\Time\BaseTickSystem.cpp" />
+    <ClInclude Include="Tests\CoreTests\Memory\GMallocTest.h" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\ECSStressTest.h" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h" />
   </ItemGroup>

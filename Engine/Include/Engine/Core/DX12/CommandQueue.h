@@ -1,17 +1,18 @@
 #pragma once
+#include <Include/Engine/Core/Interfaces/BaseObject.h>
 #include <Include/Engine/Utils/WinInclude.h>
 
-class CommandQueue : public BaseUnknown {
+class CommandQueue : public BaseObject {
 protected:
   static std::atomic<uint32_t> g_commandQueueID;
 public:
   bool initialize(ID3D12Device10* device, D3D12_COMMAND_LIST_TYPE type);
   bool initialize(ID3D12Device10* device, D3D12_COMMAND_LIST_TYPE type, ID3D12PipelineState* pipelineState);
   CommandQueue();
-  ~CommandQueue();
+  ~CommandQueue() override;
 
   void waitForGPU();
-  void shutdown() override;
+  void shutdown();
 
   ID3D12GraphicsCommandList7* initCommandList();
   void excecuteCommandList();

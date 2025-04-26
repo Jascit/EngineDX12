@@ -4,7 +4,7 @@ BaseGPUBuffer::~BaseGPUBuffer(){
   shutdown();
 }
 
-BaseGPUBuffer::BaseGPUBuffer() : /*m_CPUBuffer()*/ m_GPUbuffer(nullptr), BaseUnknown("GPUBuffer") {}
+BaseGPUBuffer::BaseGPUBuffer() : /*m_CPUBuffer()*/ m_GPUbuffer(nullptr) {}
 
 void BaseGPUBuffer::shutdown(){
   if (m_GPUbuffer)

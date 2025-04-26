@@ -1,4 +1,5 @@
 #include <Include/Engine/Core/DX12/CommandQueue.h>
+#include <Include/Engine/Core/Interfaces/BaseObject.h>
 
 std::atomic<uint32_t> CommandQueue::g_commandQueueID = 0;
 
@@ -68,7 +69,7 @@ bool CommandQueue::initialize(ID3D12Device10* device, D3D12_COMMAND_LIST_TYPE ty
   }
   m_fenceEvent = CreateEventW(nullptr, FALSE, FALSE, nullptr);
 }
-CommandQueue::CommandQueue() : m_fenceValue(0), BaseUnknown("CommandQueue", g_commandQueueID), m_fenceEvent(nullptr) {}
+CommandQueue::CommandQueue() : m_fenceValue(0), m_fenceEvent(nullptr){}
 
 CommandQueue::~CommandQueue(){
   shutdown();

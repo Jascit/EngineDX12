@@ -1,7 +1,8 @@
 #include <Include/Engine/Core/Systems/ECS/ECSystem.h>
 
-void ECSystem::initialize() {
+bool ECSystem::initialize() {
   // Optional: Startlogik
+  return true;
 }
 
 void ECSystem::update() {
