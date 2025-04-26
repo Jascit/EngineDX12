@@ -8,6 +8,11 @@
 #include <cassert>
 #include <utility>
 
+// Maximum alignment to reserve space for metadata
+constexpr size_t MaxAllocationAlignment = 64;
+// Default alignment if none is specified
+constexpr size_t DefaultAllocationAlignment = 16;
+
 struct MetadataPtr {
   void* _basePtr;       // Pointer to the full allocated block (metadata + data)
   void* _userPtr;       // Pointer returned to the user (after metadata)

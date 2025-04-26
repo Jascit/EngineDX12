@@ -26,6 +26,7 @@ AllocInfo TrackingAllocator::alignedAllocate(size_t bytes, size_t alignment) {
     MetadataPtr* data = reinterpret_cast<MetadataPtr*>(base);
     new(data) MetadataPtr(base, userPtrFromBase(base), totalSize, alignment,
       static_cast<uint32_t>(totalSize - MaxAllocationAlignment), 0);
+    LLMTracker::recordAlloc(GCurrentLLMTag, totalSize);
     return AllocInfo(data, userPtrFromBase(base));
   }
   catch (const std::exception&) {
@@ -43,7 +44,7 @@ void TrackingAllocator::deallocate(void* ptr) noexcept {
   assert(metadata->_basePtr && "Base pointer is missing in metadata.");
   assert(metadata->_totalSize > 0 && "Invalid size in metadata.");
   assert((reinterpret_cast<uintptr_t>(metadata->_basePtr) % metadata->_alignment) == 0 && "Misaligned base pointer.");
-  LLMTracker::recordAlloc(GCurrentLLMTag, metadata->_totalSize);
+  LLMTracker::recordFree(GCurrentLLMTag, metadata->_totalSize);
   ::operator delete(metadata->_basePtr, metadata->_totalSize, std::align_val_t{ metadata->_alignment });
 }
 
