@@ -1,6 +1,8 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/IComponent.h>
+#include <Include/Engine/Core/Threading/CriticalSections/CriticalSection.h>
+#include <Include/Engine/Core/Threading/Lockers/LockGuard.h>
 #include <Include/Engine/Core/Systems/ECS/ComponentData.h>
+#include <Include/Engine/Core/Interfaces/IComponent.h>
 #include <unordered_map>
 #include <memory>
 #include <typeindex>
@@ -15,13 +17,13 @@ public:
 
   template<typename T>
   T* GetComponent(Entity entity) {
-    auto* data = GetComponentData<T>();
-    return data ? data->getComponent(entity) : nullptr;
+    ComponentData<T>* data = GetComponentData<T>();
+    return data ? data->GetComponent(entity) : nullptr;
   }
 
   template<typename T>
   void removeComponent(Entity entity) {
-    auto* data = GetComponentData<T>();
+    ComponentData<T>* data = GetComponentData<T>();
     if (!data || !data->removeComponent(entity)) {
       Logger::Get().logWarning("Entity " + std::to_string(entity) + " does not have this component.");
     }
@@ -29,14 +31,20 @@ public:
 
   template<typename T>
   bool hasComponent(Entity entity) {
-    auto* data = GetComponentData<T>();
+    ComponentData<T>* data = GetComponentData<T>();
     return data && data->hasComponent(entity);
   }
 
   template<typename T>
   ComponentData<T>* GetComponentData() {
+    static ComponentData<T>* hashed = nullptr;
+    if (hashed) return hashed;
+    LockGuard<CriticalSection> lock(_csB);
+    if (hashed) return hashed;
+    auto index = std::type_index(typeid(T));
     auto it = _componentPools.find(std::type_index(typeid(T)));
     if (it == _componentPools.end()) return nullptr;
+    hashed = reinterpret_cast<ComponentData<T>*>(it->second.get());
     return reinterpret_cast<ComponentData<T>*>(it->second.get());
   }
 
@@ -49,6 +57,10 @@ private:
 
   template<typename T>
   ComponentData<T>* GetOrCreateComponentData() {
+    static ComponentData<T>* hashed = nullptr;
+    if (hashed) return hashed;
+    LockGuard<CriticalSection> lock(_csA);
+    if (hashed) return hashed;
     auto index = std::type_index(typeid(T));
     auto it = _componentPools.find(index);
     if (it == _componentPools.end())
@@ -58,6 +70,7 @@ private:
       std::unique_ptr<IComponentData, ComponentDataDeleter> ptr(reinterpret_cast<IComponentData*>(tempPtr));
       _componentPools[index] = std::move(ptr);
 
+      hashed = reinterpret_cast<ComponentData<T>*>(_componentPools[index].get());
       return tempPtr;
     }
     return reinterpret_cast<ComponentData<T>*>(_componentPools[index].get());
@@ -65,4 +78,6 @@ private:
 
 private:
   tracked_unordered_map<std::type_index, std::unique_ptr<IComponentData, ComponentDataDeleter>> _componentPools;
+  CriticalSection _csA;
+  CriticalSection _csB;
 };

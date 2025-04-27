@@ -165,7 +165,3 @@ void stressTestECSystem_MT() {
   Logger::Get().logInfo("Stress test completed successfully.");
 }
 
-int main() {
-  stressTestECSystem_MT();
-  return 0;
-}

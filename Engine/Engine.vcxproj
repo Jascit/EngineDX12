@@ -223,6 +223,7 @@
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableCS.h" />
     <ClInclude Include="Include\Engine\Core\Threading\ConditionalVariables\ConditionalVariableMTX.h" />
     <ClInclude Include="Include\Engine\Core\Threading\CriticalSections\CriticalSection.h" />
+    <ClInclude Include="Include\Engine\Core\Threading\CriticalSections\SharedCriticalSection.h" />
     <ClInclude Include="Include\Engine\Core\Threading\Lockers\CriticalSection\UniqueLockCS.h" />
     <ClInclude Include="Include\Engine\Core\Threading\Lockers\LockGuard.h" />
     <ClInclude Include="Include\Engine\Core\Threading\Lockers\Mutex\UniqueLockMTX.h" />
