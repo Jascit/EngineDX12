@@ -5,8 +5,8 @@
 #include <cstddef>
 #include <new>
 #include <type_traits>
-\
-template<typename T, typename allocator = TrackingAllocator>
+
+template<typename T>
 class STLAllocator {
 public:
   using value_type = T;
@@ -24,16 +24,19 @@ public:
 
   template<typename U>
   STLAllocator(const STLAllocator<U>&) noexcept {}
+  STLAllocator() {}
 
   pointer allocate(size_type n) {
     if (n == 0) return nullptr;
+    LLM_SCOPE_BYTAG(LLMTags::STD)
     size_t bytes = n * sizeof(T);
-    void* p = allocator->allocate(bytes, alignof(T));
+    void* p = GMalloc->allocate(bytes, alignof(T));
     return static_cast<T*>(p);
   }
 
   void deallocate(pointer p, size_type n) noexcept {
-    _alloc->deallocate(p);
+    LLM_SCOPE_BYTAG(LLMTags::STD)
+    GMalloc->deallocate(p);
   }
 
   template<typename U, typename... Args>
@@ -51,7 +54,9 @@ public:
 
 private:
   std::string _name;
-  allocator* _alloc;
 };
 
-
+template<typename T>
+using tracked_vector = std::vector<T, STLAllocator<T>>;
+template<typename KTy, typename Ty>
+using tracked_unordered_map = std::unordered_map<KTy, Ty, std::hash<KTy>, std::equal_to<KTy>, STLAllocator<std::pair<const KTy, Ty>>>;

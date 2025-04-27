@@ -21,6 +21,6 @@ void ECSystem::removeEntity(Entity entity) {
   m_entityManager.removeEntity(entity);
 }
 
-const std::vector<Entity>& ECSystem::getActiveEntities() const {
-  return m_entityManager.getActiveEntities();
+const tracked_vector<Entity>& ECSystem::GetActiveEntities() const {
+  return m_entityManager.GetActiveEntities();
 }

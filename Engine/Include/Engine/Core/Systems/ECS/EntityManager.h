@@ -1,18 +1,20 @@
 #pragma once
-#include <vector>
+#include <Include/Engine/Core/Threading/CriticalSections/CriticalSection.h>
+#include <Include/Engine/Core/Threading/Lockers/LockGuard.h>
+#include <Include/Engine/Core/Memory/STLAllocator.h>
 #include <Include/Engine/Utils/WinInclude.h>
+#include <vector>
 //TODO: 0 refactor
-using Entity = UINT;
-const Entity INVALID_ENTITY = std::numeric_limits<UINT>::max();
 class EntityManager {
-public:   
+public:
   EntityManager();
   Entity addEntity();
   void removeEntity(Entity entity);
-  const std::vector<Entity>& getActiveEntities() const;
+  const tracked_vector<Entity>& GetActiveEntities() const;
 private:
-  std::vector<Entity> m_activeEntities;
-  std::vector<Entity> m_freeEntities;
+  tracked_vector<Entity> m_activeEntities;
+  tracked_vector<Entity> m_freeEntities;
   Entity m_nextEntity;
+  CriticalSection _cs;
 };
 

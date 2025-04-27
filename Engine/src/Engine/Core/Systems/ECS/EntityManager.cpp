@@ -2,6 +2,7 @@
 EntityManager::EntityManager() : m_nextEntity(0) {}
 
 Entity EntityManager::addEntity(){
+	LockGuard<CriticalSection> lock(_cs);
 	if (!m_freeEntities.empty())
 	{
 		Entity entity = m_freeEntities.back();
@@ -14,6 +15,7 @@ Entity EntityManager::addEntity(){
 }
 
 void EntityManager::removeEntity(Entity entity){
+	LockGuard<CriticalSection> lock(_cs);
 	if (entity > 0 && entity <= m_activeEntities.size() && m_activeEntities[entity - 1] != INVALID_ENTITY) {
 		m_freeEntities.push_back(entity);
 		m_activeEntities[entity - 1] = INVALID_ENTITY;
@@ -23,6 +25,6 @@ void EntityManager::removeEntity(Entity entity){
 	}
 }
 
-const std::vector<Entity>& EntityManager::getActiveEntities() const{
+const tracked_vector<Entity>& EntityManager::GetActiveEntities() const{
 	return m_activeEntities;
 }

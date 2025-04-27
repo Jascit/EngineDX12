@@ -18,7 +18,8 @@
 
 
 using Microsoft::WRL::ComPtr;
-
+using Entity = UINT;
+const Entity INVALID_ENTITY = UINT_MAX;
 
 #ifdef _DEBUG
 #include <d3d12sdklayers.h>

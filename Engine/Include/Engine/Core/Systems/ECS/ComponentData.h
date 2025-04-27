@@ -1,17 +1,30 @@
 #pragma once
-#include <Include/Engine/Core/Systems/ECS/EntityManager.h>
+#include <Include/Engine/Core/Interfaces/IComponentData.h>
+#include <Include/Engine/Core/Memory/STLAllocator.h>
+#include <Include/Engine/Utils/WinInclude.h>
+#include <Include/Engine/Core/Threading/CriticalSections/SharedCriticalSection.h>
+#include <shared_mutex>
 #include <vector>
 #include <unordered_map>
+//Delete O(1), find O(1), emplace O(1)
 template<typename T>
-class ComponentData {
+class ComponentData : IComponentData {
 public:
+  ~ComponentData() override {};
+  virtual void destroy() noexcept override {
+    this->~ComponentData<T>();
+    GMalloc->deallocate(this);// Unknown Tag
+  }
+
   void clear() {
+    std::unique_lock lock(_mtx);
     m_indices.clear();
     m_data.clear();
     m_entityLookup.clear();
   }
 
   void addComponent(Entity ID, T&& data) {
+    std::unique_lock lock(_mtx);
     if (m_indices.find(ID) != m_indices.end()) {
       throw std::runtime_error("Component already exists for this Entity");
     }
@@ -22,6 +35,7 @@ public:
   }
 
   bool removeComponent(Entity ID) {
+    std::unique_lock lock(_mtx);
     auto it = m_indices.find(ID);
     if (it == m_indices.end()) return false;
 
@@ -42,7 +56,8 @@ public:
     return true;
   }
 
-  T* getComponent(Entity ID) {
+  T* GetComponent(Entity ID) {
+    std::shared_lock<std::shared_mutex> lock(_mtx);
     auto it = m_indices.find(ID);
     if (it == m_indices.end()) return nullptr;
     return &m_data[it->second];
@@ -52,13 +67,14 @@ public:
     return m_indices.find(ID) != m_indices.end();
   }
 
-  std::vector<std::pair<Entity, T>>& getAllComponents() { return m_data; }
-  std::unordered_map<Entity, UINT>& getAllIndices() { return m_indices; }
-  std::vector<Entity>& getEntityLookupTable() { return m_entityLookup; }
+  tracked_vector<T>& getAllComponents() { return m_data; }
+  tracked_unordered_map<Entity, UINT>& getAllIndices() { return m_indices; }
+  tracked_vector<Entity>& getEntityLookupTable() { return m_entityLookup; }
 
 private:
-  std::unordered_map<Entity, UINT> m_indices;
-  std::vector<T> m_data;
-  std::vector<Entity> m_entityLookup;
-  UINT _size;
+  tracked_unordered_map<Entity, UINT> m_indices;
+  tracked_vector<T> m_data;
+  tracked_vector<Entity> m_entityLookup;
+  UINT _size = 0;
+  std::shared_mutex _mtx;
 };
