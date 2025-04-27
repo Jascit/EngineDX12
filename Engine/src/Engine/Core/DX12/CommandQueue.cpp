@@ -68,7 +68,9 @@ bool CommandQueue::initialize(ID3D12Device10* device, D3D12_COMMAND_LIST_TYPE ty
     return false;
   }
   m_fenceEvent = CreateEventW(nullptr, FALSE, FALSE, nullptr);
+  return true;
 }
+
 CommandQueue::CommandQueue() : m_fenceValue(0), m_fenceEvent(nullptr){}
 
 CommandQueue::~CommandQueue(){

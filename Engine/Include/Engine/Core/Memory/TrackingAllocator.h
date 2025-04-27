@@ -38,8 +38,8 @@ struct AllocInfo {
 
 class TrackingAllocator : public Malloc {
 public:
-  void* allocate(size_t bytes, size_t alignment = DefaultAllocationAlignment) override;
-  AllocInfo alignedAllocate(size_t bytes, size_t alignment = DefaultAllocationAlignment);
+  void* allocate(uint32_t bytes, uint32_t alignment = DefaultAllocationAlignment) override;
+  AllocInfo alignedAllocate(uint32_t bytes, uint32_t alignment = DefaultAllocationAlignment);
   void deallocate(void* ptr) noexcept override;
   inline void* userPtrFromBase(void* ptr);
   inline MetadataPtr* metadataFromPtr(void* ptr);

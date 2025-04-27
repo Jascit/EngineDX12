@@ -1,12 +1,12 @@
 #pragma once
 #include <Include/Engine/Core/Systems/MemoryManagmentSystem/MemoryManagmentSystem.h>
-#include <Include/Engine/Core/memory/DefaultAllocator.h>
+#include <Include/Engine/Core/memory/TrackingAllocator.h>
 #include <memory>
 #include <cstddef>
 #include <new>
 #include <type_traits>
-//TODO: 1, STLAllocator for STD library, remake
-template<typename T>
+\
+template<typename T, typename allocator = TrackingAllocator>
 class STLAllocator {
 public:
   using value_type = T;
@@ -22,13 +22,6 @@ public:
     using other = STLAllocator<U>;
   };
 
-  STLAllocator(const std::string& name)
-    : _name(name)
-  {
-    _alloc = MemoryManagentSystem::instance().findAllocator(_name);
-    if (!_allocator) throw std::runtime_error("Allocator not found");
-  }
-
   template<typename U>
   STLAllocator(const STLAllocator<U>&) noexcept {}
 
@@ -40,9 +33,7 @@ public:
   }
 
   void deallocate(pointer p, size_type n) noexcept {
-    if (p == nullptr) return;
-    size_t bytes = n * sizeof(T);
-    _alloc->deallocate(p, bytes);
+    _alloc->deallocate(p);
   }
 
   template<typename U, typename... Args>
@@ -60,6 +51,7 @@ public:
 
 private:
   std::string _name;
-  IAllocator* _alloc;
+  allocator* _alloc;
 };
+
 

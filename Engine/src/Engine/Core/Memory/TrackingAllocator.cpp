@@ -2,9 +2,9 @@
 
 TrackingAllocator* GMalloc = new TrackingAllocator;
 
-void* TrackingAllocator::allocate(size_t bytes, size_t alignment) {
+void* TrackingAllocator::allocate(uint32_t bytes, uint32_t alignment) {
   try {
-    size_t totalSize = bytes + MaxAllocationAlignment;
+    uint32_t totalSize = bytes + MaxAllocationAlignment;
     totalSize = (totalSize + alignment - 1) & ~(alignment - 1);
     void* base = ::operator new(totalSize, std::align_val_t{ alignment });
     MetadataPtr* data = reinterpret_cast<MetadataPtr*>(base);
@@ -18,9 +18,9 @@ void* TrackingAllocator::allocate(size_t bytes, size_t alignment) {
   }
 }
 
-AllocInfo TrackingAllocator::alignedAllocate(size_t bytes, size_t alignment) {
+AllocInfo TrackingAllocator::alignedAllocate(uint32_t bytes, uint32_t alignment) {
   try {
-    size_t totalSize = bytes + MaxAllocationAlignment;
+    uint32_t totalSize = bytes + MaxAllocationAlignment;
     totalSize = (totalSize + alignment - 1) & ~(alignment - 1);
     void* base = ::operator new(totalSize, std::align_val_t{ alignment });
     MetadataPtr* data = reinterpret_cast<MetadataPtr*>(base);

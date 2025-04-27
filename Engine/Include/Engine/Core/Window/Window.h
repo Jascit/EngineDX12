@@ -30,18 +30,18 @@ public:
     return m_shouldResize;
   }
 
-  inline UINT GetWidth() const
+  inline uint32_t GetWidth() const
   {
     return m_width;
   }
 
-  inline UINT GetHeight() const
+  inline uint32_t GetHeight() const
   {
     return m_height;
   }
 
-  static constexpr size_t frameCount = 2;
-  static constexpr size_t GetFrameCount() {
+  static constexpr uint32_t frameCount = 2;
+  static constexpr uint32_t GetFrameCount() {
     return frameCount;
   }
 private:
@@ -53,8 +53,8 @@ private:
 private:
   ATOM m_wndClass;
   HWND m_wndHandle;
-  size_t m_height;
-  size_t m_width;
+  uint32_t m_height;
+  uint32_t m_width;
 
   bool m_shouldResize;
   bool m_shouldClose;
@@ -65,7 +65,7 @@ private:
   ComPtr<ID3D12DescriptorHeap> m_descHeap;
   D3D12_CPU_DESCRIPTOR_HANDLE m_cpuHandles[frameCount];
 
-  size_t m_currentIndexBuffer;
+  uint32_t m_currentIndexBuffer;
 
   ComPtr<ID3D12Resource2> m_depthBuffer;
   ComPtr<ID3D12DescriptorHeap> m_dsvHeap;
