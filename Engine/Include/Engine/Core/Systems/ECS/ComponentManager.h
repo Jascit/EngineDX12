@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <memory>
 #include <typeindex>
-
+// TODO: 2, lock free struckt 
 class ComponentManager {
 
 public:

@@ -13,8 +13,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     if (DXContext::Get().initialize() && Window::Get().initialize())
     {
       Logger::Get().logInfo("DXContex and Window are initialized");
-      //stressTestECSystem_MT_MultiComponents();
-      //stressTestECSystem_MT();
+      stressTestECSystem_MT_MultiComponents();
+      stressTestECSystem_MT();
       stressTestECSystem();
       //while (!Window::Get().shouldClose())
       //{
