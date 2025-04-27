@@ -7,6 +7,7 @@ enum class LLMTags : uint8_t {
   Rendering,
   Audio,
   Unknown,
+  STD,
   Count
 };
 struct LLMStats {

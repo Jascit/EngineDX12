@@ -23,6 +23,6 @@ void EntityManager::removeEntity(Entity entity){
 	}
 }
 
-const std::vector<Entity>& EntityManager::getActiveEntities() const{
+const tracked_vector<Entity>& EntityManager::GetActiveEntities() const{
 	return m_activeEntities;
 }

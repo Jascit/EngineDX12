@@ -11,7 +11,7 @@ public:
   ~ComponentData() override {};
   virtual void destroy() noexcept override {
     this->~ComponentData<T>();
-    GMalloc->deallocate<alignof(ComponentData<T>)>(this, sizeof(ComponentData<T>));
+    GMalloc->deallocate(this);// Unknown Tag
   }
 
   void clear() {

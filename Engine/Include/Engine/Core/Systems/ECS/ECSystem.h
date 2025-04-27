@@ -13,7 +13,7 @@ public:
   // --- Entity-Logic ---
   Entity createEntity();
   void removeEntity(Entity entity);
-  const std::vector<Entity, STLAllocator<Entity>>& GetActiveEntities() const;
+  const tracked_vector<Entity>& GetActiveEntities() const;
 
   // --- Components-Logic ---
   template<typename T>

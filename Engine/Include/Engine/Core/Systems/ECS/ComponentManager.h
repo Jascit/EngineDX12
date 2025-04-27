@@ -53,7 +53,7 @@ private:
     auto it = _componentPools.find(index);
     if (it == _componentPools.end())
     {
-      void* mem = GMalloc->allocate<alignof(ComponentData<T>)>(sizeof(ComponentData<T>));
+      void* mem = GMalloc->allocate(sizeof(ComponentData<T>), alignof(ComponentData<T>)); // Unknown Tag
       ComponentData<T>* tempPtr = new (mem) ComponentData<T>();
       std::unique_ptr<IComponentData, ComponentDataDeleter> ptr(reinterpret_cast<IComponentData*>(tempPtr));
       _componentPools[index] = std::move(ptr);
