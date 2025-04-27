@@ -1,10 +1,19 @@
 #pragma once
-#include <Include/Engine/Core/Systems/ECS/EntityManager.h>
+#include <Include/Engine/Core/Interfaces/IComponentData.h>
+#include <Include/Engine/Core/Memory/STLAllocator.h>
+#include <Include/Engine/Utils/WinInclude.h>
 #include <vector>
 #include <unordered_map>
+//Delete O(1), find O(1), emplace O(1)
 template<typename T>
-class ComponentData {
+class ComponentData : IComponentData {
 public:
+  ~ComponentData() override {};
+  virtual void destroy() noexcept override {
+    this->~ComponentData<T>();
+    GMalloc->deallocate<alignof(ComponentData<T>)>(this, sizeof(ComponentData<T>));
+  }
+
   void clear() {
     m_indices.clear();
     m_data.clear();
@@ -52,13 +61,13 @@ public:
     return m_indices.find(ID) != m_indices.end();
   }
 
-  std::vector<std::pair<Entity, T>>& getAllComponents() { return m_data; }
-  std::unordered_map<Entity, UINT>& getAllIndices() { return m_indices; }
-  std::vector<Entity>& getEntityLookupTable() { return m_entityLookup; }
+  tracked_vector<T>& getAllComponents() { return m_data; }
+  tracked_unordered_map<Entity, UINT>& getAllIndices() { return m_indices; }
+  tracked_vector<Entity>& getEntityLookupTable() { return m_entityLookup; }
 
 private:
-  std::unordered_map<Entity, UINT> m_indices;
-  std::vector<T> m_data;
-  std::vector<Entity> m_entityLookup;
-  UINT _size;
+  tracked_unordered_map<Entity, UINT> m_indices;
+  tracked_vector<T> m_data;
+  tracked_vector<Entity> m_entityLookup;
+  UINT _size = 0;
 };

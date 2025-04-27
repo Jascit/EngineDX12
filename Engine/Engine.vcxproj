@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Include\Engine\Core\Interfaces\IComponentData.h" />
     <ClCompile Include="Include\Engine\Core\Memory\MemoryPool.h" />
     <ClCompile Include="src\Engine\Core\Diagnostics\ErrorHandler.cpp" />
     <ClCompile Include="src\Engine\Core\Diagnostics\Logger.cpp" />
