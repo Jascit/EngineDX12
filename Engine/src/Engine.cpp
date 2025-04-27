@@ -13,23 +13,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     if (DXContext::Get().initialize() && Window::Get().initialize())
     {
       Logger::Get().logInfo("DXContex and Window are initialized");
-      stressTestECSystem_MT_MultiComponents();
-      stressTestECSystem_MT();
-      stressTestECSystem();
-      //while (!Window::Get().shouldClose())
-      //{
-      //  Window::Get().update();
-      //  if (Window::Get().shouldResize())
-      //  {
-      //    DXContext::Get().flush(Window::GetFrameCount());
-      //    Window::Get().resize();
-      //  }
-      //  auto* cmdList = DXContext::Get().GetGraphicsQueue()->initCommandList();
-      //  Window::Get().startFrame(cmdList);
-      //  Window::Get().endFrame(cmdList);
-      //  DXContext::Get().GetGraphicsQueue()->excecuteCommandList();
-      //  Window::Get().preset();
-      //}
+      while (!Window::Get().shouldClose())
+      {
+        Window::Get().update();
+        if (Window::Get().shouldResize())
+        {
+          DXContext::Get().flush(Window::GetFrameCount());
+          Window::Get().resize();
+        }
+        auto* cmdList = DXContext::Get().GetGraphicsQueue()->initCommandList();
+        Window::Get().startFrame(cmdList);
+        Window::Get().endFrame(cmdList);
+        DXContext::Get().GetGraphicsQueue()->excecuteCommandList();
+        Window::Get().preset();
+      }
     }
     DXContext::Get().flush(Window::GetFrameCount());
     Window::Get().shutdown();
@@ -37,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     delete GMalloc;
   }
   DXDebugLayer::Get().shutdown();
-
+  //reallocate this shit
   for (size_t i = 0; i < static_cast<int>(LLMTags::Count); i++)
   {
     switch (LLMTags(i))
