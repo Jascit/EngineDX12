@@ -246,8 +246,11 @@
     <ClInclude Include="Include\Engine\Graphics\Systems\UploadSystem.h" />
     <ClInclude Include="src\Engine\Core\Interfaces\Systems\Time\BaseTickSystem.cpp" />
     <ClInclude Include="Tests\CoreTests\Memory\GMallocTest.h" />
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\dataComponent.h" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\ECSStressTest.h" />
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\nameComponent.h" />
     <ClInclude Include="Tests\CoreTests\Systems\ECS\PositionComponent.h" />
+    <ClInclude Include="Tests\CoreTests\Systems\ECS\sumComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

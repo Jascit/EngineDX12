@@ -6,14 +6,16 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
-  Logger::Get().clearLogs();
+  //Logger::Get().clearLogs();
   if (DXDebugLayer::Get().initialize())
   {
     Logger::Get().logInfo("DXDebugLayer is initialized");
     if (DXContext::Get().initialize() && Window::Get().initialize())
     {
       Logger::Get().logInfo("DXContex and Window are initialized");
-      stressTestECSystem_MT();
+      //stressTestECSystem_MT_MultiComponents();
+      //stressTestECSystem_MT();
+      stressTestECSystem();
       //while (!Window::Get().shouldClose())
       //{
       //  Window::Get().update();
