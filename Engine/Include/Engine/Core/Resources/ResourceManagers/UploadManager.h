@@ -1,8 +1,8 @@
 #pragma once
-#include <Include/Engine/Utils/WinInclude.h>
-#include <Include/Engine/Core/DX12/CommandQueue.h>
-#include <Include/Engine/Core/Threading/thread.h>
-#include <Include/Engine/Core/Threading/ConditionalVariables/ConditionalVariableCS.h>
+#include <Engine/Utils/WinInclude.h>
+#include <Engine/Core/DX12/CommandQueue.h>
+#include <Engine/Core/Threading/thread.h>
+#include <Engine/Core/Threading/ConditionalVariables/ConditionalVariableCS.h>
 
 class UploadManager {
 public:

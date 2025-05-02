@@ -4,12 +4,12 @@
 #include <cassert>
 #include <thread>
 #include <functional>
-#include <Include/Engine/Core/Systems/ECS/ECSystem.h>
+#include <Engine/Core/Systems/ECS/ECSystem.h>
 #include "PositionComponent.h"
 #include "nameComponent.h"
 #include "dataComponent.h"
 #include "sumComponent.h"
-#include <Include/Engine/Utils/WinInclude.h>
+#include <Engine/Utils/WinInclude.h>
 
 // Функція для отримання кількості потоків
 unsigned int getThreadCount() {

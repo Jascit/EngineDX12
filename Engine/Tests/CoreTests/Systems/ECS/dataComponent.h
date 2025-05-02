@@ -1,5 +1,5 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/IComponent.h>
+#include <Engine/Core/Interfaces/IComponent.h>
 class dataComponent : IComponent {
 public:
   ~dataComponent() override {};

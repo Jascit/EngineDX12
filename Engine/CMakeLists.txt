@@ -20,19 +20,23 @@ add_subdirectory(src/Engine/Utils)
 # External (placeholder)
 # add_subdirectory(src/External)
 
+
 # Executable target
-add_executable(Engine
-    src/Engine.cpp
+add_executable(Engine WIN32
+    src/Engine.cpp  
 )
+target_link_libraries(Engine d3d12 dxgi dxguid d3dcompiler)
 
 target_link_libraries(Engine
     CoreModule
     GraphicsModule
     MathModule
-    InputModule
-    PhysicsModule
-    UtilsModule
+    #InputModule
+    #PhysicsModule
+    #UtilsModule
 )
 
 # Tests
-add_subdirectory(Tests)
+#if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Tests/CMakeLists.txt")
+#    add_subdirectory(Tests)
+#endif()

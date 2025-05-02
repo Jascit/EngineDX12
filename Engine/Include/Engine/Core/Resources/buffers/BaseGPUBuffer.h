@@ -1,7 +1,7 @@
 #pragma once
-#include <Include/Engine/Utils/WinInclude.h>
-#include <Include/Engine/Core/Resources/Container.h>
-#include <Include/Engine/Core/Interfaces/BaseObject.h>
+#include <Engine/Utils/WinInclude.h>
+#include <Engine/Core/Resources/Container.h>
+#include <Engine/Core/Interfaces/BaseObject.h>
 //TODO: 3 refactor
 class BaseGPUBuffer : BaseObject {
 protected:

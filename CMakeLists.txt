@@ -2,5 +2,10 @@
 cmake_minimum_required(VERSION 3.15)
 project(EngineProjectRoot)
 
-# Add the main project directory
+include_directories($ENV{WindowsSdkDir}Include/$ENV{WindowsSDKVersion}/um)
+include_directories($ENV{WindowsSdkDir}Include/$ENV{WindowsSDKVersion}/shared)
+include_directories($ENV{WindowsSdkDir}Include/$ENV{WindowsSDKVersion}/winrt)
+
+link_directories($ENV{WindowsSdkDir}Lib/$ENV{WindowsSDKVersion}/um/x64)
+
 add_subdirectory(Engine)

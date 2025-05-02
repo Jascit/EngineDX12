@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
-#include <Include/Engine/Core/Threading/Lockers/Mutex/UniqueLockMTX.h>
-#include <Include/Engine/Core/Threading/Mutexes/Mutex.h>
+#include <Engine/Core/Threading/Lockers/Mutex/UniqueLockMTX.h>
+#include <Engine/Core/Threading/Mutexes/Mutex.h>
 
 class ConditionalVariableMTX
 {
