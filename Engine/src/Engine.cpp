@@ -6,7 +6,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
-  //Logger::Get().clearLogs();
+  Logger::Get().clearLogs();
   if (DXDebugLayer::Get().initialize())
   {
     Logger::Get().logInfo("DXDebugLayer is initialized");

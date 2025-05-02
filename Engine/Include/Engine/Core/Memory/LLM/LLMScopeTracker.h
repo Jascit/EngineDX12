@@ -1,5 +1,6 @@
 #pragma once
-#include <Engine/Core/Systems/MemoryManagmentSystem/LLM/LLMStructs.h>
+#include <Engine/Core/Memory/LLM/LLMStructs.h>
+
 //TODO: Allocators remake
 class LLMTrackerScope {
 public:

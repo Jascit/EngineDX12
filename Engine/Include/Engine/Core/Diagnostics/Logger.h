@@ -61,6 +61,7 @@ private:
   std::list<std::pair<LogLevel, std::string>> m_queue;
   ConditionalVariableCS m_condition;
 
+  std::string m_path;
   std::ofstream m_file;
   bool m_shouldStop;
 public:

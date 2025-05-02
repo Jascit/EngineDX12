@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine/Core/Systems/MemoryManagmentSystem/LLM/LLMScopeTracker.h>
+#include <Engine/Core/Memory/LLM/LLMScopeTracker.h>
 #include <atomic>
 #include <array>
 #define LLM_SCOPE_BYTAG(Tag) \
