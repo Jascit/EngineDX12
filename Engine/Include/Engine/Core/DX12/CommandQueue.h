@@ -1,6 +1,7 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/BaseObject.h>
-#include <Include/Engine/Utils/WinInclude.h>
+#include <Engine/Core/Interfaces/BaseObject.h>
+#include <Engine/Utils/WinInclude.h>
+
 
 class CommandQueue : public BaseObject {
 protected:

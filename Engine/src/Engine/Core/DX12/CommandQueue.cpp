@@ -1,5 +1,4 @@
-#include <Include/Engine/Core/DX12/CommandQueue.h>
-#include <Include/Engine/Core/Interfaces/BaseObject.h>
+#include <Engine/Core/DX12/CommandQueue.h>
 
 std::atomic<uint32_t> CommandQueue::g_commandQueueID = 0;
 
