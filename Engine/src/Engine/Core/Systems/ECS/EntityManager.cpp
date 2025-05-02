@@ -2,7 +2,7 @@
 EntityManager::EntityManager() : m_nextEntity(0) {}
 
 Entity EntityManager::addEntity(){
-	LockGuard<CriticalSection> lock(_cs);
+	std::lock_guard<std::mutex> lock(_mtx);
 	if (!m_freeEntities.empty())
 	{
 		Entity entity = m_freeEntities.back();
@@ -15,7 +15,7 @@ Entity EntityManager::addEntity(){
 }
 
 void EntityManager::removeEntity(Entity entity){
-	LockGuard<CriticalSection> lock(_cs);
+	std::lock_guard<std::mutex> lock(_mtx);
 	if (entity > 0 && entity <= m_activeEntities.size() && m_activeEntities[entity - 1] != INVALID_ENTITY) {
 		m_freeEntities.push_back(entity);
 		m_activeEntities[entity - 1] = INVALID_ENTITY;

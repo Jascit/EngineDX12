@@ -1,6 +1,6 @@
 #pragma once
-#include <Engine/Core/Threading/CriticalSections/CriticalSection.h>
-#include <Engine/Core/Threading/Lockers/LockGuard.h>
+#include <mutex>
+#include <thread>
 #include <Engine/Core/Systems/ECS/ComponentData.h>
 #include <Engine/Core/Interfaces/IComponent.h>
 #include <unordered_map>
@@ -39,7 +39,7 @@ public:
   ComponentData<T>* GetComponentData() {
     static ComponentData<T>* hashed = nullptr;
     if (hashed) return hashed;
-    LockGuard<CriticalSection> lock(_csB);
+    std::lock_guard<std::mutex> lock(_mtxB);
     if (hashed) return hashed;
     auto index = std::type_index(typeid(T));
     auto it = _componentPools.find(std::type_index(typeid(T)));
@@ -59,7 +59,7 @@ private:
   ComponentData<T>* GetOrCreateComponentData() {
     static ComponentData<T>* hashed = nullptr;
     if (hashed) return hashed;
-    LockGuard<CriticalSection> lock(_csA);
+    std::lock_guard<std::mutex> lock(_mtxA);
     if (hashed) return hashed;
     auto index = std::type_index(typeid(T));
     auto it = _componentPools.find(index);
@@ -78,6 +78,6 @@ private:
 
 private:
   tracked_unordered_map<std::type_index, std::unique_ptr<IComponentData, ComponentDataDeleter>> _componentPools;
-  CriticalSection _csA;
-  CriticalSection _csB;
+  std::mutex _mtxA;
+  std::mutex _mtxB;
 };

@@ -1,9 +1,10 @@
 #pragma once
-#include <Engine/Core/Threading/ConditionalVariables/ConditionalVariableCS.h>
 #include <Engine/Core/Systems/ThreadingSystem/ThreadPool/TaskQueue.h>
-#include <Engine/Core/Threading/CriticalSections/CriticalSection.h>
-#include <Engine/Core/Threading/Lockers/LockGuard.h>
-#include <Engine/Core/Threading/thread.h>
+#include <condition_variable>
+#include <thread>
+#include <mutex>
+
+
 #define THREADCOUNT_FOR_THREAD_POOL 4
 
 class ThreadPool {
@@ -16,9 +17,9 @@ private:
   void threadCycle();
 
 private:
-  std::vector<thread> _workerThreads;
-  CriticalSection _cs;
-  ConditionalVariableCS _cv;
+  std::vector<std::thread> _workerThreads;
+  std::mutex _mtx;
+  std::condition_variable _cv;
   TaskQueue _queue;
   bool _shouldStop;
 

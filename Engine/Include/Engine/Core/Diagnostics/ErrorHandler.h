@@ -2,6 +2,7 @@
 #include "logger.h"
 #include <functional>
 #include <chrono>
+#include <Windows.h>
 
 class ErrorHandler
 {

@@ -13,6 +13,7 @@ constexpr size_t MaxAllocationAlignment = 64;
 // Default alignment if none is specified
 constexpr size_t DefaultAllocationAlignment = 16;
 
+
 struct MetadataPtr {
   void* _basePtr;       // Pointer to the full allocated block (metadata + data)
   void* _userPtr;       // Pointer returned to the user (after metadata)
@@ -26,6 +27,8 @@ struct MetadataPtr {
     _freeBytes(freeBytes), _bytesInUse(bytesInUse) {
   };
 };
+
+constexpr size_t MetaDataPadding = sizeof(MetadataPtr);
 
 struct AllocInfo {
   MetadataPtr* _metadata; // Points to allocation metadata
@@ -43,6 +46,11 @@ public:
   void deallocate(void* ptr) noexcept override;
   inline void* userPtrFromBase(void* ptr);
   inline MetadataPtr* metadataFromPtr(void* ptr);
+
+  template<typename U, typename... Args>
+  void construct(U* p, Args&&... args) {
+    ::new(static_cast<void*>(p)) U(std::forward<Args>(args)...);
+  }
 };
 
 extern TrackingAllocator* GMalloc;

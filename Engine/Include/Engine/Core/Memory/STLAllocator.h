@@ -3,8 +3,12 @@
 #include <Engine/Core/memory/TrackingAllocator.h>
 #include <memory>
 #include <cstddef>
+#include <string>
 #include <new>
 #include <type_traits>
+#include <unordered_map>
+#include <list>
+#include <vector>
 
 template<typename T>
 class STLAllocator {
@@ -51,12 +55,11 @@ public:
 
   bool operator==(const STLAllocator&) const noexcept { return true; }
   bool operator!=(const STLAllocator&) const noexcept { return false; }
-
-private:
-  std::string _name;
 };
 
 template<typename T>
 using tracked_vector = std::vector<T, STLAllocator<T>>;
 template<typename KTy, typename Ty>
 using tracked_unordered_map = std::unordered_map<KTy, Ty, std::hash<KTy>, std::equal_to<KTy>, STLAllocator<std::pair<const KTy, Ty>>>;
+template<typename T>
+using tracked_list = std::list<T, STLAllocator<T>>;

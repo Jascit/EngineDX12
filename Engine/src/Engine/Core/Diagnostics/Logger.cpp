@@ -1,138 +1,155 @@
 #include <Engine/Core/Diagnostics/Logger.h>
 
-Logger::Logger() : m_shouldStop(false), m_buffer{ 0 }, m_currentSize(0), m_lastSize(0), m_path(PROJECT_ROOT_DIR"/Engine/out/logs/") {
-	startWorker();
-}
-
-void Logger::addLog(const std::string message) {
-	if (m_currentSize + message.length() + 1 >= sizeof(m_buffer))
-	{
-		clearBuffer();
-	}
-	memcpy(m_buffer + m_currentSize, message.c_str(), message.length());
-	m_currentSize += message.length();
-	m_buffer[m_currentSize] = '\n';
-	m_currentSize++;
-	m_buffer[m_currentSize] = '\0';
-}
-void Logger::logInfo(const std::string message) {
-	push(std::make_pair(Info, message));
-}
-
-void Logger::logWarning(const std::string message) {
-	push(std::make_pair(Warning, message));
-}
-
-void Logger::logError(const std::string message) {
-	push(std::make_pair(Error, message));
-	
-}
-
-void Logger::logCriticalError(const std::string message) {
-	push(std::make_pair(Critical, message));
-}
-
-void Logger::push(std::pair<LogLevel, std::string> pair) {
-	LockGuard<CriticalSection> lock(m_cs);
-	m_queue.push_back(pair);
-	m_condition.notifyOne();
+void Logger::waitForEnd() {
+  _shouldStop = true;
+  _cv.notify_all();
+  if (_workerThread.joinable()) {
+    _workerThread.join();
+  }
 }
 
 Logger::~Logger() {
-	m_shouldStop = true;
-	m_condition.notifyAll();
-	if (m_workerThread.joinable()) {
-		m_workerThread.join();
-	}
+  waitForEnd();
+  if (_file.is_open()) {
+    _file.close();
+  }
 }
 
-void Logger::startWorker() {
-	m_workerThread = thread(&Logger::threadCycle, this);
+Logger::Logger() : _shouldStop(false), _workerThread(std::thread(&Logger::threadCycle, this)), _path(PROJECT_ROOT_DIR"/Engine/out/logs/log.txt") {
+  m_buffer.reserve(65536);
 }
 
-void Logger::threadCycle() {
-	UniqueLockCS<CriticalSection> lock(m_cs);
-	lock.unlock();
-	while (!m_shouldStop) {
-		m_condition.wait(lock, [this] { return !m_queue.empty() || m_shouldStop; });
-		m_file.open(m_path+"log.txt", std::ios::app);
-		if (!m_file.is_open()) {
-			OutputDebugStringA("Debug message: Can not create log file!\n");
-			return;
-		}
-		while (!m_queue.empty()) {
-			auto instance = m_queue.front();
-			m_queue.pop_front();
-			lock.lock();
-			writeInLogs(instance.second, instance.first);
-			lock.unlock();
-		}
-		m_file.close();
-	}
+std::pair<LogLevel, std::string*>* Logger::constructPair(LogLevel level, const std::string& message) {
+  LLM_SCOPE_BYTAG(LLMTags::STD)
+  std::string* str_instance = (std::string*)GMalloc->allocate(sizeof(std::string), alignof(std::string));
+  std::pair<LogLevel, std::string*>* pair_instance = (std::pair<LogLevel, std::string*>*)GMalloc->allocate(sizeof(std::pair<LogLevel, std::string*>), alignof(std::pair<LogLevel, std::string*>));
+  GMalloc->construct(str_instance, message.c_str());
+  GMalloc->construct(pair_instance, level, str_instance);
+  return pair_instance;
 }
 
-void Logger::writeInLogs(const std::string message, LogLevel level) {
-	if (m_currentSize + message.length() + 1 >= sizeof(m_buffer))
-	{
-		clearBuffer();
-	}
-	setLogLevel(level);
-	addLog(message);
-	flush();
+void Logger::deconstructPair(std::pair<LogLevel, std::string*>* pair) {
+  LLM_SCOPE_BYTAG(LLMTags::STD)
+  GMalloc->deallocate(pair->second);
+  GMalloc->deallocate(pair);
 }
 
-void Logger::flush() {
-	if (m_file.is_open()) {
-		m_file << std::string(m_buffer + m_lastSize, m_currentSize - m_lastSize);
-	}
+void Logger::logInfo(const std::string& message) {
+  push(constructPair(LogLevel::Info, message));
+  _cv.notify_one();
+}
+
+void Logger::logWarning(const std::string& message) {
+  push(constructPair(LogLevel::Warning, message));
+  _cv.notify_one();
+}
+
+void Logger::logError(const std::string& message) {
+  push(constructPair(LogLevel::Error, message));
+  _cv.notify_one();
+}
+
+void Logger::logCriticalError(const std::string& message) {
+  push(constructPair(LogLevel::Critical, message));
+  _cv.notify_one();
 }
 
 void Logger::clearLogs() {
-	if (m_file.is_open()) {
-		m_file.close();
-	}
+  if (_file.is_open()) {
+    _file.close();
+  }
 
-	std::ofstream file(m_path + "log.txt", std::ios::trunc);
-	file << "";
-	file.close();
+  std::ofstream file(_path, std::ios::trunc);
+  file << "";
+  file.close();
 
-	m_file.open(m_path + "log.txt", std::ios::app);
+  _file.open(_path, std::ios::app);
 
-	m_currentSize = 0;
-	m_buffer[m_currentSize] = '\0';
+  _currentSize = 0;
+  m_buffer[_currentSize] = '\0';
+}
+
+
+void Logger::addLogLevel(LogLevel level) {
+  const char* instance;
+  switch (level)
+  {
+  case Info:
+    instance = "[INFO] ";
+    break;
+  case Warning:
+    instance = "[WARNING] ";
+    break;
+  case Error:
+    instance = "[ERROR] ";
+    break;
+  case Critical:
+    instance = "[CRITICAL] ";
+    break;
+  default:
+    break;
+  }
+  m_buffer += instance;
+}
+
+void Logger::flush() {
+  if (_file.is_open()) {
+    _file << &m_buffer[_currentSize];
+    _currentSize = m_buffer.size();
+  }
+}
+
+void Logger::addDescription(std::string* desc) {
+  m_buffer += desc->c_str();
+  m_buffer += '\n';
+}
+
+void Logger::push(std::pair<LogLevel, std::string*>* pair) {
+  std::lock_guard<std::mutex> lock(_mtx);
+  _queue.push_back(pair);
+  _queueSize.fetch_add(1, std::memory_order_release);
+}
+
+void Logger::work() {
+  std::pair<LogLevel, std::string*>* pair_instance = _queue.front();
+  addLogLevel(pair_instance->first);
+  addDescription(pair_instance->second);
+  deconstructPair(pair_instance);
+  _queue.pop_front();
+  flush();
+  _queueSize.fetch_sub(1, std::memory_order_release);
+}
+
+/* 
+ * queue pushed in back, but pop on the front, 
+ * that can be used to synchronise the push and pull 
+ * actions, but size in queue(two way List) will have 
+ * unexpected behavior(not the problem, when there is no dependencies with it in STL)
+ * that's better to do my own linked List
+ * [poped Nodes | synch Node | pushed Nodes]
+*/
+
+void Logger::threadCycle() {
+  std::unique_lock<std::mutex> lock(_mtx);
+  while (!_shouldStop)
+  {
+    _cv.wait(lock, [&] {
+      return _queueSize.load(std::memory_order_acquire) > 1 || _shouldStop;
+      });
+    _file.open(_path, std::ios::app);
+    while (_queueSize.load(std::memory_order_acquire) - 1 != 0)
+    {
+      work();
+    }
+    if (_shouldStop)
+    {
+      work(); // write last Node
+    }
+    _file.close();
+  }
 }
 
 void Logger::clearBuffer() {
-	m_currentSize = 0;
-	m_buffer[m_currentSize] = '\0';
-}
-
-void Logger::setLogLevel(LogLevel level) {
-	std::string logPrefix;
-	m_lastSize = m_currentSize;
-	switch (level) {
-	case LogLevel::Info:
-		logPrefix = "[INFO]: ";
-		break;
-	case LogLevel::Warning:
-		logPrefix = "[WARNING]: ";
-		break;
-	case LogLevel::Error:
-		logPrefix = "[ERROR]: ";
-		break;
-	case LogLevel::Critical:
-		logPrefix = "[CRITICAL]: ";
-		break;
-	default:
-		logPrefix = "[UNKNOWN]: ";
-		break;
-	}
-
-	size_t logPrefixLen = logPrefix.size();
-	if (m_currentSize + logPrefixLen + 1 >= sizeof(m_buffer))
-	{
-		clearBuffer();
-	}
-	memcpy(m_buffer + m_currentSize, logPrefix.c_str(), logPrefixLen);
-	m_currentSize += logPrefixLen;
+  _currentSize = 0;
+  m_buffer[_currentSize] = '\0';
 }

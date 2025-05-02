@@ -2,7 +2,6 @@
 #include <Engine/Core/Interfaces/IComponentData.h>
 #include <Engine/Core/Memory/STLAllocator.h>
 #include <Engine/Utils/WinInclude.h>
-#include <Engine/Core/Threading/CriticalSections/SharedCriticalSection.h>
 #include <shared_mutex>
 #include <vector>
 #include <unordered_map>

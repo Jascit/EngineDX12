@@ -21,6 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
           DXContext::Get().flush(Window::GetFrameCount());
           Window::Get().resize();
         }
+        Logger::Get().logInfo("Blyatb");
         auto* cmdList = DXContext::Get().GetGraphicsQueue()->initCommandList();
         Window::Get().startFrame(cmdList);
         Window::Get().endFrame(cmdList);
@@ -31,7 +32,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     DXContext::Get().flush(Window::GetFrameCount());
     Window::Get().shutdown();
     DXContext::Get().shutdown();
-    delete GMalloc;
   }
   DXDebugLayer::Get().shutdown();
   //reallocate this shit
@@ -65,6 +65,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     auto& stats = LLMTracker::GetStats(LLMTags(i));
     Logger::Get().logInfo("Memory allocated: " + std::to_string(stats.allocated) + " memory freed: " + std::to_string(stats.freed));
   }
-
+  Logger::Get().waitForEnd();
+  delete GMalloc;
   return 0;
 }

@@ -40,7 +40,5 @@ target_link_libraries(Engine
     # UtilsModule
 )
 
-# If tests are needed, they can be added separately:
-# if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Tests/CMakeLists.txt")
-#    add_subdirectory(Tests)
-# endif()
+#If tests are needed, they can be added separately:
+add_subdirectory(Tests)

@@ -8,11 +8,11 @@ public:
   static unsigned long createThread(Func&& func);
   template<typename Func, typename... Args>
   static unsigned long createThread(Func&& func, Args&&... arg);
-  thread* GetThread(unsigned long ID);
+  std::thread* GetThread(unsigned long ID);
 
 private:
   ThreadPool _pool;
-  static std::unordered_map<unsigned long, thread> _aliveThreads;
+  static std::unordered_map<unsigned long, std::thread> _aliveThreads;
 };
 
 // hi
