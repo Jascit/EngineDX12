@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
-#include <Include/Engine/Core/Threading/CriticalSections/CriticalSection.h>
-#include <Include/Engine/Core/Threading/Lockers/CriticalSection/UniqueLockCS.h>
+#include <Engine/Core/Threading/CriticalSections/CriticalSection.h>
+#include <Engine/Core/Threading/Lockers/CriticalSection/UniqueLockCS.h>
 class ConditionalVariableCS
 {
 public:

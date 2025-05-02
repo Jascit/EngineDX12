@@ -1,9 +1,9 @@
 #pragma once
-#include <Include/Engine/Core/Threading/ConditionalVariables/ConditionalVariableCS.h>
-#include <Include/Engine/Core/Systems/ThreadingSystem/ThreadPool/TaskQueue.h>
-#include <Include/Engine/Core/Threading/CriticalSections/CriticalSection.h>
-#include <Include/Engine/Core/Threading/Lockers/LockGuard.h>
-#include <Include/Engine/Core/Threading/thread.h>
+#include <Engine/Core/Threading/ConditionalVariables/ConditionalVariableCS.h>
+#include <Engine/Core/Systems/ThreadingSystem/ThreadPool/TaskQueue.h>
+#include <Engine/Core/Threading/CriticalSections/CriticalSection.h>
+#include <Engine/Core/Threading/Lockers/LockGuard.h>
+#include <Engine/Core/Threading/thread.h>
 #define THREADCOUNT_FOR_THREAD_POOL 4
 
 class ThreadPool {

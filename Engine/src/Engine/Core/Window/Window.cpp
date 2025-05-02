@@ -1,4 +1,4 @@
-#include <Include/Engine/Core/Window/Window.h>
+#include <Engine/Core/Window/Window.h>
 
 Window::Window() : m_height(800), m_width(600), m_shouldResize(false), m_shouldClose(false), m_cpuHandles{ NULL },
                    m_isFullscreen(false), m_currentIndexBuffer(0), m_wndClass(NULL), m_wndHandle(nullptr) {}

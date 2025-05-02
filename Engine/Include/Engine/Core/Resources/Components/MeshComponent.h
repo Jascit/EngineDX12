@@ -1,8 +1,8 @@
 #pragma once
-#include <Include/Engine/Core/Resources/Components/IComponents.h>
-#include <Include/Engine/Math/Matrix/Matrix.h>
+#include <Engine/Core/Resources/Components/IComponents.h>
+#include <Engine/Math/Matrix/Matrix.h>
 #include <vector>
-#include <Include/Engine/Utils/RawContainer.h>
+#include <Engine/Utils/RawContainer.h>
 #include <queue>
 using namespace DirectX;
 struct VertexData {

@@ -1,4 +1,4 @@
-#include <Include/Engine/Core/Diagnostics/Logger.h>
+#include <Engine/Core/Diagnostics/Logger.h>
 
 Logger::Logger() : m_shouldStop(false), m_buffer{ 0 }, m_currentSize(0), m_lastSize(0) {
 	startWorker();

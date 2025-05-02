@@ -1,6 +1,6 @@
 #pragma once
-#include <Include/Engine/Core/Systems/ThreadingSystem/ThreadPool/ThreadPool.h>
-#include <Include/Engine/Utils/WinInclude.h>
+#include <Engine/Core/Systems/ThreadingSystem/ThreadPool/ThreadPool.h>
+#include <Engine/Utils/WinInclude.h>
 //TODO: Barriers/sync point
 class ThreadingSystem {
 public:

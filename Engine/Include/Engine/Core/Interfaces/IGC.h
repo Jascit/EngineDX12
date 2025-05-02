@@ -1,5 +1,6 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/ISystem.h>
+#include <Engine/Core/Interfaces/ISystem.h>
+
 class IGC : ISystem {
   // Marks reachable objects from root references
   virtual void Mark() = 0;

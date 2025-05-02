@@ -1,7 +1,7 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/ISystem.h>
-#include <Include/Engine/Core/Systems/ECS/ComponentManager.h>
-#include <Include/Engine/Core/Systems/ECS/EntityManager.h>
+#include <Engine/Core/Interfaces/ISystem.h>
+#include <Engine/Core/Systems/ECS/ComponentManager.h>
+#include <Engine/Core/Systems/ECS/EntityManager.h>
 // The ECSystem encapsulates the work with entities and components.
 // It serves as a central interface for the Entity Component System.
 class ECSystem : public ISystem {

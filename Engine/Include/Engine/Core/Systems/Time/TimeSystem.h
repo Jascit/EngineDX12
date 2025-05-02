@@ -1,6 +1,6 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/ISystem.h>
-#include <Include/Engine/Utils/WinInclude.h>
+#include <Engine/Core/Interfaces/ISystem.h>
+#include <Engine/Utils/WinInclude.h>
 #include <vector>
 #include <chrono>
 #include <functional>

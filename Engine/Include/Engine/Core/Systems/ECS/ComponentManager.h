@@ -1,8 +1,8 @@
 #pragma once
-#include <Include/Engine/Core/Threading/CriticalSections/CriticalSection.h>
-#include <Include/Engine/Core/Threading/Lockers/LockGuard.h>
-#include <Include/Engine/Core/Systems/ECS/ComponentData.h>
-#include <Include/Engine/Core/Interfaces/IComponent.h>
+#include <Engine/Core/Threading/CriticalSections/CriticalSection.h>
+#include <Engine/Core/Threading/Lockers/LockGuard.h>
+#include <Engine/Core/Systems/ECS/ComponentData.h>
+#include <Engine/Core/Interfaces/IComponent.h>
 #include <unordered_map>
 #include <memory>
 #include <typeindex>

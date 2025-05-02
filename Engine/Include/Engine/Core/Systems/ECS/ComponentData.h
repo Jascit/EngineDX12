@@ -1,8 +1,8 @@
 #pragma once
-#include <Include/Engine/Core/Interfaces/IComponentData.h>
-#include <Include/Engine/Core/Memory/STLAllocator.h>
-#include <Include/Engine/Utils/WinInclude.h>
-#include <Include/Engine/Core/Threading/CriticalSections/SharedCriticalSection.h>
+#include <Engine/Core/Interfaces/IComponentData.h>
+#include <Engine/Core/Memory/STLAllocator.h>
+#include <Engine/Utils/WinInclude.h>
+#include <Engine/Core/Threading/CriticalSections/SharedCriticalSection.h>
 #include <shared_mutex>
 #include <vector>
 #include <unordered_map>

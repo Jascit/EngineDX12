@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseGPUBuffer.h"
-#include <Include/Engine/Core/DX12/DXContext.h>
+#include <Engine/Core/DX12/DXContext.h>
 
 template<typename T>
 class StaticGPUBuffer : public BaseGPUBuffer {

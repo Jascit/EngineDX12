@@ -1,8 +1,8 @@
 #pragma once
-#include <Include/Engine/Core/Threading/CriticalSections/CriticalSection.h>
-#include <Include/Engine/Core/Threading/Lockers/LockGuard.h>
-#include <Include/Engine/Core/Memory/STLAllocator.h>
-#include <Include/Engine/Utils/WinInclude.h>
+#include <Engine/Core/Threading/CriticalSections/CriticalSection.h>
+#include <Engine/Core/Threading/Lockers/LockGuard.h>
+#include <Engine/Core/Memory/STLAllocator.h>
+#include <Engine/Utils/WinInclude.h>
 #include <vector>
 //TODO: 0 refactor
 class EntityManager {

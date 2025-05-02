@@ -1,6 +1,6 @@
 #pragma once
-#include <Include/Engine/Core/Systems/MemoryManagmentSystem/MemoryManagmentSystem.h>
-#include <Include/Engine/Core/memory/TrackingAllocator.h>
+#include <Engine/Core/Systems/MemoryManagmentSystem/MemoryManagmentSystem.h>
+#include <Engine/Core/memory/TrackingAllocator.h>
 #include <memory>
 #include <cstddef>
 #include <new>

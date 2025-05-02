@@ -1,6 +1,6 @@
 #pragma once
-#include <Include/Engine/Utils/WinInclude.h>
-#include <Include/Engine/Core/DX12/DXContext.h>
+#include <Engine/Utils/WinInclude.h>
+#include <Engine/Core/DX12/DXContext.h>
 
 class Window
 {
