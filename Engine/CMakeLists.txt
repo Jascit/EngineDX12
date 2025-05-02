@@ -7,15 +7,16 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include directories
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/Engine/include)
+add_definitions(-DPROJECT_ROOT_DIR="${CMAKE_SOURCE_DIR}")
 
 # Module subdirectories
-add_subdirectory(src/Engine/Core)
-add_subdirectory(src/Engine/Graphics)
-add_subdirectory(src/Engine/Math)
-add_subdirectory(src/Engine/Input)
-add_subdirectory(src/Engine/Physics)
-add_subdirectory(src/Engine/Utils)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/src/Engine/Core)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/src/Engine/Graphics)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/src/Engine/Math)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/src/Engine/Input)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/src/Engine/Physics)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/src/Engine/Utils)
 
 # External (placeholder)
 # add_subdirectory(src/External)

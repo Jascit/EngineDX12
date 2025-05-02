@@ -1,6 +1,7 @@
 #include <Engine/Core/Diagnostics/Logger.h>
 
-Logger::Logger() : m_shouldStop(false), m_buffer{ 0 }, m_currentSize(0), m_lastSize(0) {
+Logger::Logger() : m_shouldStop(false), m_buffer{ 0 }, m_currentSize(0), m_lastSize(0), m_path(PROJECT_ROOT_DIR) {
+	m_path += "/Engine/out/logs";
 	startWorker();
 }
 
@@ -25,6 +26,7 @@ void Logger::logWarning(const std::string message) {
 
 void Logger::logError(const std::string message) {
 	push(std::make_pair(Error, message));
+	
 }
 
 void Logger::logCriticalError(const std::string message) {
@@ -54,7 +56,7 @@ void Logger::threadCycle() {
 	lock.unlock();
 	while (!m_shouldStop) {
 		m_condition.wait(lock, [this] { return !m_queue.empty() || m_shouldStop; });
-		m_file.open("out/logs/log.txt", std::ios::app);
+		m_file.open(m_path+"/log.txt", std::ios::app);
 		if (!m_file.is_open()) {
 			OutputDebugStringA("Debug message: Can not create log file!\n");
 			return;
@@ -91,11 +93,11 @@ void Logger::clearLogs() {
 		m_file.close();
 	}
 
-	std::ofstream file("out/logs/log.txt", std::ios::trunc);
+	std::ofstream file(m_path + "log.txt", std::ios::trunc);
 	file << "";
 	file.close();
 
-	m_file.open("out/logs/log.txt", std::ios::app);
+	m_file.open(m_path + "log.txt", std::ios::app);
 
 	m_currentSize = 0;
 	m_buffer[m_currentSize] = '\0';
