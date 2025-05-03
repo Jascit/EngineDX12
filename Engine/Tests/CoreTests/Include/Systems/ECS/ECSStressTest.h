@@ -1,15 +1,15 @@
+#include <Engine/Core/Systems/ECS/ECSystem.h>
+#include <Engine/Utils/WinInclude.h>
+#include "PositionComponent.h"
+#include "nameComponent.h"
+#include "dataComponent.h"
+#include "sumComponent.h"
 #include <iostream>
 #include <chrono>
 #include <vector>
 #include <cassert>
 #include <thread>
 #include <functional>
-#include <Engine/Core/Systems/ECS/ECSystem.h>
-#include "PositionComponent.h"
-#include "nameComponent.h"
-#include "dataComponent.h"
-#include "sumComponent.h"
-#include <Engine/Utils/WinInclude.h>
 
 // Функція для отримання кількості потоків
 unsigned int getThreadCount() {

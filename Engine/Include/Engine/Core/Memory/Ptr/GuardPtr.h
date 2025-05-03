@@ -1,5 +1,6 @@
 #pragma once
 #include <Engine/Core/Memory/STLAllocator.h>
+
 template<typename T, typename _Alloc = STLAllocator<T>>
 class GuardPtr {
 public:

@@ -15,7 +15,12 @@ Logger::~Logger() {
   }
 }
 
-Logger::Logger() : _shouldStop(false), _workerThread(std::thread(&Logger::threadCycle, this)), _path(PROJECT_ROOT_DIR"/Engine/out/logs/log.txt") {
+Logger::Logger()
+  : _shouldStop(false), _currentSize{ 0 }, _writerCount {0},
+  _workerThread(std::thread(&Logger::threadCycle, this)), 
+  _path(PROJECT_ROOT_DIR"/Engine/out/logs/log.txt"),
+  _queueSize{0} 
+{
   m_buffer.reserve(65536);
 }
 
@@ -87,6 +92,7 @@ void Logger::addLogLevel(LogLevel level) {
     instance = "[CRITICAL] ";
     break;
   default:
+    instance = "[UNKNOWN] ";
     break;
   }
   m_buffer += instance;
@@ -105,9 +111,11 @@ void Logger::addDescription(std::string* desc) {
 }
 
 void Logger::push(std::pair<LogLevel, std::string*>* pair) {
+  _writerCount.fetch_add(1, std::memory_order_release);
   std::lock_guard<std::mutex> lock(_mtx);
   _queue.push_back(pair);
   _queueSize.fetch_add(1, std::memory_order_release);
+  _writerCount.fetch_sub(1, std::memory_order_release);
 }
 
 void Logger::work() {
@@ -120,12 +128,13 @@ void Logger::work() {
   _queueSize.fetch_sub(1, std::memory_order_release);
 }
 
-/* 
- * queue pushed in back, but pop on the front, 
- * that can be used to synchronise the push and pull 
- * actions, but size in queue(two way List) will have 
+/*
+ * queue pushed in back, but pop on the front,
+ * that can be used to synchronise the push and pull
+ * actions, but size in queue(two way List) will have
  * unexpected behavior(not the problem, when there is no dependencies with it in STL)
- * that's better to do my own linked List
+ * TODO: that's better to do my own linked List
+ *
  * [poped Nodes | synch Node | pushed Nodes]
 */
 
@@ -137,16 +146,28 @@ void Logger::threadCycle() {
       return _queueSize.load(std::memory_order_acquire) > 1 || _shouldStop;
       });
     _file.open(_path, std::ios::app);
-    while (_queueSize.load(std::memory_order_acquire) - 1 != 0)
+    while (_queueSize.load(std::memory_order_acquire) > 1)
     {
       work();
     }
-    if (_shouldStop)
+    if (_writerCount.load(std::memory_order_acquire) == 0 && _queueSize.load(std::memory_order_acquire))
     {
       work(); // write last Node
     }
     _file.close();
   }
+  while (_queueSize.load(std::memory_order_acquire) || _writerCount.load(std::memory_order_acquire)) { // make sure to unload all logs
+    if (_queueSize.load(std::memory_order_acquire))
+    {
+      work();
+    }
+    else
+    {
+      std::this_thread::yield();
+    }
+   
+  }
+  
 }
 
 void Logger::clearBuffer() {

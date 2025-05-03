@@ -1,12 +1,11 @@
 #pragma once
+#include <thread>
 
 class HazardPointer {
 public:
-	HazardPointer(const HazardPointer&) = delete;
-	HazardPointer operator=(const HazardPointer&) = delete;
-
 	HazardPointer();
 	HazardPointer(void* ptr);
+	HazardPointer(const HazardPointer&) = delete;
 	
 	void* Get() {
 		return ptr;
@@ -15,7 +14,8 @@ public:
 		m_ptr = ptr;
 	}
 
-	HazardPointer& operator=(const HazardPointer& other);
+
+	HazardPointer operator=(const HazardPointer&) = delete;
 	HazardPointer& operator!=(const HazardPointer& other);
 	HazardPointer& operator!=(const void* ptr);
 	HazardPointer& operator==(const HazardPointer& other);
@@ -23,4 +23,5 @@ public:
 	
 private:
 	void* m_ptr;
+	std::thread
 };

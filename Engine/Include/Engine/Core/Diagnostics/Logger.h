@@ -10,7 +10,7 @@
 #include <fstream>
 #include <Windows.h>
 #include <list>
-
+//TODO: тоді я можу добавити писачів, які будуть пушити, і якщо ніхто не буде писати в цей момент то можна обробити останній елемент, писачі будуть опріділятись через атомарну одиницю, для швидкодії
 enum class LogLevelTag : uint8_t
 {
   Logs = 0,
@@ -37,8 +37,8 @@ public:
   // Logging critical errors.
   void logCriticalError(const std::string& message);
   // Retrieve all stored logs.
-  inline char GetLogs() const& {
-    return *m_buffer.data();
+  inline const char* GetLogs() {
+    return m_buffer.data();
   }
   // Clear the log buffer and file
   void clearLogs();
@@ -63,9 +63,9 @@ private:
 private:
   std::string m_buffer;
   size_t _currentSize;
-  size_t _lastSize;
   std::mutex _mtx;
   std::atomic<uint16_t> _queueSize;
+  std::atomic<uint16_t> _writerCount;
   std::thread _workerThread;
   std::list<std::pair<LogLevel, std::string*>*> _queue;
 

@@ -41,4 +41,4 @@ target_link_libraries(Engine
 )
 
 #If tests are needed, they can be added separately:
-add_subdirectory(Tests)
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/Tests)

@@ -6,7 +6,7 @@
 #include <new>
 #include <cassert>
 #include <Engine/Core/Memory/TrackingAllocator.h>
-#include <I>
+#include <>
 #include <Engine/Core/Diagnostics/Logger.h>
 #include <Engine/Core/Threading/thread.h>
 #include <Engine/Utils/WinInclude.h>
