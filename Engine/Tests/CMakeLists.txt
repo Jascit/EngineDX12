@@ -19,8 +19,8 @@ target_link_libraries(Tests d3d12 dxgi dxguid d3dcompiler)
 
 target_link_libraries(Tests
     CoreTests
-    # GraphicsModule
-    # MathModule
+    GraphicsModule
+    MathModule
     # InputModule
     # PhysicsModule
     # UtilsModule
