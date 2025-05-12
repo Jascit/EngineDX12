@@ -21,12 +21,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
           DXContext::Get().flush(Window::GetFrameCount());
           Window::Get().resize();
         }
-        Logger::Get().logInfo("Blyatb");
         auto* cmdList = DXContext::Get().GetGraphicsQueue()->initCommandList();
         Window::Get().startFrame(cmdList);
         Window::Get().endFrame(cmdList);
         DXContext::Get().GetGraphicsQueue()->excecuteCommandList();
         Window::Get().preset();
+        Sleep(6);
       }
     }
     DXContext::Get().flush(Window::GetFrameCount());

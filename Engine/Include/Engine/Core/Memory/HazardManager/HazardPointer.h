@@ -6,30 +6,22 @@
 
 class HazardPointer {
 public:
-  HazardPointer() : m_ptr(nullptr), m_owner(std::thread::id()) {}
-  HazardPointer(void* ptr) : m_ptr(ptr), m_owner(std::this_thread::get_id()) {}
+  HazardPointer() : m_hp(nullptr) {}
+  HazardPointer(void* ptr) : m_hp(ptr) {}
   HazardPointer(const HazardPointer&) = delete;
   HazardPointer& operator=(const HazardPointer&) = delete;
 
 
   void protect(void* ptr) {
-    hp->pointer.store(ptr, std::memory_order_release);
+    m_hp.store(ptr, std::memory_order_release);
   }
 
   void release() {
-    hp->pointer.store(nullptr, std::memory_order_release);
+    m_hp.store(nullptr, std::memory_order_release);
   }
 
   void* Get() const {
-    return m_ptr.load(std::memory_order_acquire);
-  }
-
-  std::thread::id GetOwner() const {
-    return m_owner.load(std::memory_order_acquire);
-  }
-
-  void SetOwner(const std::thread::id& tid) {
-    m_owner.store(tid, std::memory_order_release);
+    return m_hp.load(std::memory_order_acquire);
   }
 
   friend bool operator==(const HazardPointer& lhs, const HazardPointer& rhs) {
@@ -57,6 +49,5 @@ public:
   }
 
 private:
-  std::atomic<void*> m_ptr;
-  std::atomic<std::thread::id> m_owner;
+  std::atomic<void*> m_hp;
 };

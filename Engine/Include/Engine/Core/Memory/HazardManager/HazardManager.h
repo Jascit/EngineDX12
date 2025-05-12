@@ -5,8 +5,9 @@
 
 class HazardManager {
 public: 
-  HazardPointer* registration();
-  void unregister();
+// hazard_pointers
+  HazardPointer* registerTread();
+  void unregisterThread();
   bool retire(void* ptr);
   bool collect();
 
@@ -15,9 +16,10 @@ private:
 
 private:
   tracked_vector<HazardPointer> m_pointers;
-  tracked_vector<uint16_t> _freeList;
-  tracked_unordered_map<uint32_t, uint16_t> _threadIDToIndex;
-  uint16_t _currentSize;
+  tracked_vector<std::atomic<uint16_t>> _freeList;
+  //RCU - delete indices
+  tracked_unordered_map<uint32_t, std::atomic<uint32_t>> _threadIDToIndex;
+  std::atomic<uint16_t> _currentSize;
 
-  tracked_vector<std::atomic<void*>> _deferredList;
+  tracked_vector<std::atomic<void*>> _retiredList;
 };
