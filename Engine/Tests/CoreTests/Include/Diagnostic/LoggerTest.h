@@ -1,4 +1,4 @@
-#include <Engine/Core/Diagnostics/Logger.h>
+#include <Core/Diagnostics/Logger.h>
 #include <iostream>
 
 void loggerMultithreadedTest()

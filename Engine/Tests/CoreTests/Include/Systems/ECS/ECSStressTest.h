@@ -1,5 +1,5 @@
-#include <Engine/Core/Systems/ECS/ECSystem.h>
-#include <Engine/Utils/WinInclude.h>
+#include <Core/Systems/ECS/ECSystem.h>
+#include <Utils/WinInclude.h>
 #include "PositionComponent.h"
 #include "nameComponent.h"
 #include "dataComponent.h"
