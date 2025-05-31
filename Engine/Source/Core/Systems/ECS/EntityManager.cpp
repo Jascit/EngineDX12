@@ -1,4 +1,4 @@
-#include <Core/Systems/ECS/EntityManager.h>
+#include <Core/Systems/ECS/EntityManager.hpp>
 EntityManager::EntityManager() : m_nextEntity(0) {}
 
 Entity EntityManager::addEntity(){

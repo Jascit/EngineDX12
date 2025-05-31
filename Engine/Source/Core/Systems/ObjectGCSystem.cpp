@@ -1,4 +1,4 @@
-#include <Core/Systems/ObjectGCSystem.h>
+#include <Core/Systems/ObjectGCSystem.hpp>
 void ObjectGCSystem::UnregisterObject() {
 
 }

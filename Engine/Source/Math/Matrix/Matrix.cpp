@@ -1,4 +1,4 @@
-#include <Math/Matrix/Matrix.h>
+#include <Math/Matrix/Matrix.hpp>
 
 Matrix::Matrix()
 {

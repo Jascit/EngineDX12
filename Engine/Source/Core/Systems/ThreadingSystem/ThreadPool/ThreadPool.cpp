@@ -1,4 +1,4 @@
-#include <Core/Systems/ThreadingSystem/ThreadPool/ThreadPool.h>
+#include <Core/Systems/ThreadingSystem/ThreadPool/ThreadPool.hpp>
 
 ThreadPool::ThreadPool()
   : _shouldStop(false)

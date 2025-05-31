@@ -1,4 +1,4 @@
-#include <Core/Systems/Time/TimeSystem.h>
+#include <Core/Systems/Time/TimeSystem.hpp>
 using UpdateCallback = std::function<void(float)>;
 void TimeSystem::updateDelta(){
   auto now = std::chrono::high_resolution_clock::now();

@@ -1,4 +1,4 @@
-#include <Core/Systems/ECS/ECSystem.h>
+#include <Core/Systems/ECS/ECSystem.hpp>
 
 bool ECSystem::initialize() {
   // Optional: Startlogik

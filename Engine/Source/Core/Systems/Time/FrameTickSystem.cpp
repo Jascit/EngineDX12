@@ -1,4 +1,4 @@
-#include <Core/Systems/Time/FrameTickSystem.h>
+#include <Core/Systems/Time/FrameTickSystem.hpp>
 void FrameTickSystem::update(float frameDeltaTime) {
   if (!_callbacks.empty())
   {
