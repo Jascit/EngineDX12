@@ -1,4 +1,4 @@
-//#include <Core/Memory/HazardManager/HazardManager.h>
+//#include <Core/Memory/HazardManager/HazardManager.hpp>
 //
 ///*
 // * @brief  Global hazard-pointers manager, using to delete the pointer in multi-threading environment

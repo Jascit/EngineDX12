@@ -1,8 +1,8 @@
-#include <Graphics/DebugLayer/DXDebugLayer.h>
-#include <Core/Memory/TrackingAllocator.h>
-#include <Core/DX12/DXContext.h>
-#include <Core/Window/Window.h>
-#include <Utils/WinInclude.h>
+#include <Graphics/DebugLayer/DXDebugLayer.hpp>
+#include <Core/Memory/TrackingAllocator.hpp>
+#include <Core/DX12/DXContext.hpp>
+#include <Core/Window/Window.hpp>
+#include <Utils/WinInclude.hpp>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 

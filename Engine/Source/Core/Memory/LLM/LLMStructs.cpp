@@ -1,2 +1,2 @@
-#include <Core/Memory/LLM/LLMStructs.h>
+#include <Core/Memory/LLM/LLMStructs.hpp>
 thread_local LLMTags GCurrentLLMTag = LLMTags::Unknown;

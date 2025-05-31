@@ -1,4 +1,4 @@
-#include <Core/Interfaces/Systems/Time/BaseTickSystem.h>
+#include <Core/Interfaces/Systems/Time/BaseTickSystem.hpp>
 BaseTickSystem::CallbackID BaseTickSystem::registerCallback(UpdateCallback func){
   CallbackID id = 0;
   if (!_freeIDs.empty()) {

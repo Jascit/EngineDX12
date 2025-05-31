@@ -1,4 +1,4 @@
-#include <Math/Matrix/MatrixFactory.h>
+#include <Math/Matrix/MatrixFactory.hpp>
 
 Matrix MatrixFactory::CreateTranslation(float tx, float ty, float tz)
 {

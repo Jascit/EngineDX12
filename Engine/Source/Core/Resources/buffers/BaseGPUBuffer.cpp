@@ -1,4 +1,4 @@
-#include <Core/Resources/buffers/BaseGPUBuffer.h>
+#include <Core/Resources/buffers/BaseGPUBuffer.hpp>
 
 BaseGPUBuffer::~BaseGPUBuffer(){
   shutdown();

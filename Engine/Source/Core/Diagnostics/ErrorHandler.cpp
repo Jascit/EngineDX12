@@ -1,4 +1,4 @@
-#include <Core/Diagnostics/ErrorHandler.h>
+#include <Core/Diagnostics/ErrorHandler.hpp>
 
 void ErrorHandler::CatchException(const std::exception& e, const std::string& errorMsg) {
   std::string msg = errorMsg;
