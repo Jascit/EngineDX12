@@ -5,10 +5,10 @@
 #include <cstdlib>
 #include <new>
 #include <cassert>
-#include <Core/Memory/TrackingAllocator.h>
-#include <Core/Diagnostics/Logger.h>
-#include <Core/Threading/thread.h>
-#include <Utils/WinInclude.h>
+#include <Core/Memory/TrackingAllocator.hpp>
+#include <Core/Diagnostics/Logger.hpp>
+#include <Core/Threading/thread.hpp>
+#include <Utils/WinInclude.hpp>
 #include <mutex>
 
 constexpr size_t NUM_ALLOCATIONS = 1000000;
