@@ -4,8 +4,8 @@
 #include <vector>
 #include <cassert>
 #include <chrono>
-#include <Core/Diagnostics/Logger.h>
-#include <Utils/Classes/List.h> // заміни на свій хедер
+#include <Core/Diagnostics/Logger.hpp>
+#include <Utils/Classes/List.hpp> // заміни на свій хедер
 
 constexpr int THREADS = 8;
 constexpr int OPERATIONS_PER_THREAD = 10000;

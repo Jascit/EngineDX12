@@ -1,9 +1,9 @@
-#include <Core/Systems/ECS/ECSystem.h>
-#include <Utils/WinInclude.h>
-#include "PositionComponent.h"
-#include "nameComponent.h"
-#include "dataComponent.h"
-#include "sumComponent.h"
+#include <Core/Systems/ECS/ECSystem.hpp>
+#include <Utils/WinInclude.hpp>
+#include "PositionComponent.hpp"
+#include "nameComponent.hpp"
+#include "dataComponent.hpp"
+#include "sumComponent.hpp"
 #include <iostream>
 #include <chrono>
 #include <vector>
